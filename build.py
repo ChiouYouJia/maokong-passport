@@ -12,9 +12,9 @@ pathlib.Path("index.html").write_text(f"""<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
-<meta name="description" content="給貓空茶行的合作提案：捷運站掃碼進場、路線設計、店家給碼集章、集滿換青農聯名禮盒。">
+<meta name="description" content="走進貓空六間茶行，完成任務集章，集滿六個章換一盒青農聯名小茶禮盒。">
 <meta property="og:title" content="{title}">
-<meta property="og:description" content="一張數位護照，把纜車人潮走進茶園。">
+<meta property="og:description" content="走一趟山上的茶行，把六個章蓋滿。">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>%F0%9F%8D%B5</text></svg>">
 <style>*,*::before,*::after{{box-sizing:border-box}}body,h1,h2,h3,h4,p,dl,dd,figure{{margin:0}}button,input{{font:inherit;color:inherit}}</style>

@@ -1,29 +1,21 @@
-<title>貓空集章護照</title>
+<title>貓空集章護照 / 猫空スタンプパスポート</title>
 
 <style>
 :root{
-  --paper:      #E6EBE2;
-  --surface:    #F4F7F0;
-  --surface-2:  #DCE3D6;
-  --ink:        #16261F;
-  --ink-soft:   #4E6055;
-  --ink-faint:  #7C8C82;
-  --rule:       #C3CDBC;
-  --tea:        #2E6B4E;
-  --tea-deep:   #1D4633;
-  --tea-wash:   #DFE9DF;
-  --seal:       #A93B2C;
-  --seal-wash:  #F0DED9;
-  --gold:       #8E7028;
-  --gold-wash:  #EFE7D2;
-  --mist:       #7E9C97;
-  --bezel:      #14261E;
-  --on-tea:     #F4F7F0;
-  --on-seal:    #F6F2EE;
+  --paper:#E6EBE2; --surface:#F4F7F0; --surface-2:#DCE3D6; --ink:#16261F;
+  --ink-soft:#4E6055; --ink-faint:#7C8C82; --rule:#C3CDBC; --tea:#2E6B4E;
+  --tea-deep:#1D4633; --tea-wash:#DFE9DF; --seal:#A93B2C; --seal-wash:#F0DED9;
+  --gold:#8E7028; --gold-wash:#EFE7D2; --mist:#7E9C97; --bezel:#14261E;
+  --on-tea:#F4F7F0; --on-seal:#F6F2EE;
 
   --serif:"Noto Serif TC","Source Han Serif TC","Songti TC","SimSun","PingFang TC",Georgia,serif;
   --sans:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Hiragino Sans GB",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+/* 日文版改用日文字形（漢字字形與中文不同，不能共用） */
+:root[lang="ja"]{
+  --serif:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP","Source Han Serif JP","MS PMincho",serif;
+  --sans:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic","Noto Sans JP","Meiryo",system-ui,-apple-system,sans-serif;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -43,56 +35,39 @@
 }
 
 *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
-body{
-  margin:0; background:var(--paper); color:var(--ink);
-  font-family:var(--sans); font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
-}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased}
 h1,h2,h3{font-family:var(--serif); font-weight:600; line-height:1.4; margin:0; text-wrap:balance}
 p{margin:0}
 button{font:inherit; color:inherit}
 :focus-visible{outline:2px solid var(--tea); outline-offset:2px; border-radius:4px}
 
-/* ── Shell: full screen on phones, framed on desktop ── */
 .stage{min-height:100dvh; display:grid; place-items:center; position:relative; overflow:hidden}
 #guilloche{position:absolute; inset:0; width:100%; height:100%; opacity:.4; pointer-events:none; display:none}
-.app{
-  width:100%; height:100dvh; background:var(--surface);
-  display:flex; flex-direction:column; overflow:hidden; position:relative;
-}
+.app{width:100%; height:100dvh; background:var(--surface); display:flex; flex-direction:column; overflow:hidden; position:relative}
 .desknote{display:none}
 @media(min-width:760px){
   .stage{padding:26px}
   #guilloche{display:block}
-  .app{
-    max-width:394px; height:min(824px, calc(100dvh - 52px));
-    border:11px solid var(--bezel); border-radius:44px;
-    box-shadow:0 2px 6px rgba(0,0,0,.16), 0 40px 70px -28px rgba(0,0,0,.5);
-  }
-  .desknote{
-    display:block; position:absolute; bottom:18px; left:0; right:0; text-align:center;
-    font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--mist);
-  }
+  .app{max-width:394px; height:min(824px, calc(100dvh - 52px)); border:11px solid var(--bezel); border-radius:44px;
+       box-shadow:0 2px 6px rgba(0,0,0,.16), 0 40px 70px -28px rgba(0,0,0,.5)}
+  .desknote{display:block; position:absolute; bottom:18px; left:0; right:0; text-align:center;
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--mist)}
 }
 
-/* ── Top bar ── */
-.top{
-  flex:0 0 auto; display:flex; align-items:center; gap:10px; padding:14px 16px 10px;
-  border-bottom:1px solid var(--rule); background:var(--paper); min-height:52px;
-}
+.top{flex:0 0 auto; display:flex; align-items:center; gap:9px; padding:13px 14px 10px; border-bottom:1px solid var(--rule); background:var(--paper); min-height:52px}
 .top.hide{display:none}
-.back{
-  background:none; border:0; padding:4px; cursor:pointer; color:var(--ink-soft);
-  display:flex; align-items:center; margin-left:-4px;
-}
+.back{background:none; border:0; padding:4px; cursor:pointer; color:var(--ink-soft); display:flex; align-items:center; margin-left:-4px}
 .back svg{width:20px; height:20px}
 .back[hidden]{display:none}
-.top .name{font-family:var(--serif); font-size:.95rem; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-.chip{
-  font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; padding:3px 9px; border-radius:999px;
-  background:var(--seal-wash); color:var(--seal); white-space:nowrap; font-variant-numeric:tabular-nums;
-}
+.top .name{font-family:var(--serif); font-size:.93rem; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.chip{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; padding:3px 9px; border-radius:999px; background:var(--seal-wash); color:var(--seal); white-space:nowrap; font-variant-numeric:tabular-nums}
 
-/* ── Scroll area ── */
+/* 語言切換 */
+.langsw{display:inline-flex; border:1px solid var(--rule); border-radius:999px; overflow:hidden; background:var(--surface); flex:0 0 auto}
+.langsw button{background:none; border:0; cursor:pointer; padding:4px 11px; font-size:.78rem; color:var(--ink-faint); line-height:1.5; white-space:nowrap}
+.langsw button[aria-pressed="true"]{background:var(--tea); color:var(--on-tea)}
+.langsw.mini button{padding:3px 8px; font-size:.72rem}
+
 .view{flex:1 1 auto; overflow-y:auto; -webkit-overflow-scrolling:touch; padding:18px 16px 26px}
 .view::-webkit-scrollbar{width:0}
 .pane{display:none; flex-direction:column; gap:16px; animation:rise .3s ease both}
@@ -103,202 +78,127 @@ button{font:inherit; color:inherit}
 .label{font-family:var(--mono); font-size:10px; letter-spacing:.19em; text-transform:uppercase; color:var(--mist)}
 .h-lg{font-size:1.5rem; line-height:1.35}
 .h-md{font-size:1.16rem}
-.sub{font-size:.86rem; color:var(--ink-soft); line-height:1.75}
-.tiny{font-size:.75rem; color:var(--ink-faint); line-height:1.65}
+.sub{font-size:.86rem; color:var(--ink-soft); line-height:1.8}
+.tiny{font-size:.75rem; color:var(--ink-faint); line-height:1.7}
+.stack{display:flex; flex-direction:column; gap:7px}
 
-/* ── Buttons ── */
-.btn{
-  border:1px solid var(--tea); background:var(--tea); color:var(--on-tea); font-size:.94rem;
-  padding:13px 16px; border-radius:6px; cursor:pointer; width:100%; text-align:center;
-  transition:filter .15s ease, transform .12s ease;
-}
+.btn{border:1px solid var(--tea); background:var(--tea); color:var(--on-tea); font-size:.94rem; padding:13px 16px;
+     border-radius:6px; cursor:pointer; width:100%; text-align:center; transition:filter .15s ease, transform .12s ease}
 .btn:hover{filter:brightness(1.07)}
 .btn:active{transform:translateY(1px)}
 .btn.ghost{background:transparent; color:var(--tea); border-color:var(--rule)}
 .btn.seal{background:var(--seal); border-color:var(--seal); color:var(--on-seal)}
-.btn.slim{padding:9px 13px; font-size:.84rem; width:auto}
 
-/* ── Welcome ── */
-.wel-art{
-  aspect-ratio:5/3; border-radius:8px; background:var(--tea-deep); position:relative; overflow:hidden;
-  display:grid; place-items:center;
-}
+.wel-art{aspect-ratio:5/3; border-radius:8px; background:var(--tea-deep); overflow:hidden; display:grid; place-items:center}
 .wel-art svg{width:100%; height:100%; display:block}
-.rules{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--rule)}
+.wel-top{display:flex; justify-content:flex-end}
+.rules{display:flex; flex-direction:column; border-top:1px solid var(--rule); margin-top:8px}
 .rule{display:grid; grid-template-columns:26px 1fr; gap:0 12px; padding:13px 0; border-bottom:1px solid var(--rule); align-items:start}
-.rule .n{
-  font-family:var(--mono); font-size:.78rem; color:var(--seal); font-variant-numeric:tabular-nums; padding-top:3px;
-}
+.rule .n{font-family:var(--mono); font-size:.78rem; color:var(--seal); font-variant-numeric:tabular-nums; padding-top:3px}
 .rule h3{font-size:.97rem; margin-bottom:2px}
-.rule p{font-size:.83rem; color:var(--ink-soft); line-height:1.7}
-.note{
-  background:var(--gold-wash); border-radius:6px; padding:13px 14px;
-  display:flex; flex-direction:column; gap:5px;
-}
+.rule p{font-size:.83rem; color:var(--ink-soft); line-height:1.75}
+.note{background:var(--gold-wash); border-radius:6px; padding:13px 14px; display:flex; flex-direction:column; gap:5px}
 .note b{font-size:.85rem; color:var(--gold)}
-.note p{font-size:.8rem; color:var(--ink-soft); line-height:1.7}
+.note p{font-size:.8rem; color:var(--ink-soft); line-height:1.75}
 
-/* ── Route picker ── */
-.rt{
-  border:1px solid var(--rule); border-radius:7px; padding:14px; background:var(--paper);
-  cursor:pointer; text-align:left; display:flex; flex-direction:column; gap:6px; width:100%;
-  transition:border-color .15s ease, background .15s ease;
-}
+.rt{border:1px solid var(--rule); border-radius:7px; padding:14px; background:var(--paper); cursor:pointer;
+    text-align:left; display:flex; flex-direction:column; gap:6px; width:100%; transition:border-color .15s ease, background .15s ease}
 .rt[aria-pressed="true"]{border-color:var(--tea); background:var(--tea-wash)}
 .rt .r-top{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
 .rt .r-name{font-family:var(--serif); font-size:1.02rem}
 .rt .r-meta{font-family:var(--mono); font-size:10px; color:var(--mist); letter-spacing:.07em; white-space:nowrap}
-.rt .r-desc{font-size:.8rem; color:var(--ink-soft); line-height:1.65}
+.rt .r-desc{font-size:.8rem; color:var(--ink-soft); line-height:1.7}
 
-/* ── Itinerary list ── */
 .itin{display:flex; flex-direction:column}
-.stop{
-  display:grid; grid-template-columns:30px 1fr auto; gap:11px; align-items:center;
-  border:1px solid var(--rule); border-radius:7px; padding:12px; background:var(--paper);
-  cursor:pointer; text-align:left; width:100%; transition:border-color .15s ease;
-}
+.stop{display:grid; grid-template-columns:30px 1fr auto; gap:11px; align-items:center; border:1px solid var(--rule);
+      border-radius:7px; padding:12px; background:var(--paper); cursor:pointer; text-align:left; width:100%; transition:border-color .15s ease}
 .stop:hover{border-color:var(--tea)}
-.stop .idx{
-  width:28px; height:28px; border-radius:50%; border:1px solid var(--rule);
-  display:grid; place-items:center; font-family:var(--mono); font-size:11.5px; color:var(--ink-faint);
-}
+.stop .idx{width:28px; height:28px; border-radius:50%; border:1px solid var(--rule); display:grid; place-items:center;
+           font-family:var(--mono); font-size:11.5px; color:var(--ink-faint)}
 .stop.done .idx{background:var(--seal); border-color:var(--seal); color:var(--on-seal)}
 .stop .s-name{font-family:var(--serif); font-size:.97rem; display:block}
 .stop .s-tag{font-size:.75rem; color:var(--ink-soft); display:block; line-height:1.5}
 .stop .s-st{font-family:var(--mono); font-size:9.5px; letter-spacing:.11em; color:var(--mist); white-space:nowrap}
 .stop.done .s-st{color:var(--seal)}
 
-/* leg between stops */
-.leg{
-  display:flex; align-items:center; gap:8px; flex-wrap:wrap;
-  margin:0 0 0 15px; padding:9px 0 9px 20px; border-left:2px dotted var(--rule);
-}
+.leg{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-left:15px; padding:9px 0 9px 20px; border-left:2px dotted var(--rule)}
 .leg .walk{font-size:.76rem; color:var(--ink-faint); display:flex; align-items:center; gap:5px}
 .leg .walk svg{width:13px; height:13px; flex:0 0 13px}
 
-/* ── Bus ── */
-.bus{
-  display:inline-flex; align-items:center; gap:7px; border:1px solid var(--rule);
-  background:var(--surface); border-radius:999px; padding:3px 10px 3px 4px; cursor:pointer;
-  font-size:.76rem; transition:border-color .15s ease;
-}
+.bus{display:inline-flex; align-items:center; gap:7px; border:1px solid var(--rule); background:var(--surface);
+     border-radius:999px; padding:3px 10px 3px 4px; cursor:pointer; font-size:.76rem; transition:border-color .15s ease}
 .bus:hover{border-color:var(--tea)}
-.bus .rno{
-  font-family:var(--mono); font-size:10.5px; letter-spacing:.04em; background:var(--tea); color:var(--on-tea);
-  border-radius:999px; padding:2px 8px; white-space:nowrap;
-}
+.bus .rno{font-family:var(--mono); font-size:10.5px; background:var(--tea); color:var(--on-tea); border-radius:999px; padding:2px 8px; white-space:nowrap}
 .eta{display:inline-flex; align-items:center; gap:5px; color:var(--tea); font-variant-numeric:tabular-nums; white-space:nowrap}
-.eta .pulse{
-  width:6px; height:6px; border-radius:50%; background:var(--tea); flex:0 0 6px;
-  animation:blip 1.6s ease-in-out infinite;
-}
+.eta .pulse{width:6px; height:6px; border-radius:50%; background:currentColor; flex:0 0 6px; animation:blip 1.6s ease-in-out infinite}
 .eta.soon{color:var(--seal)}
-.eta.soon .pulse{background:var(--seal)}
 @keyframes blip{0%,100%{opacity:1}50%{opacity:.25}}
 @media(prefers-reduced-motion:reduce){.eta .pulse{animation:none}}
 
-.buscard{
-  border:1px solid var(--rule); border-radius:7px; background:var(--paper); overflow:hidden;
-}
-.buscard .bc-head{
-  display:flex; align-items:center; gap:9px; padding:11px 13px; border-bottom:1px solid var(--rule);
-  background:var(--tea-wash);
-}
-.buscard .bc-head .rno{
-  font-family:var(--mono); font-size:12px; background:var(--tea); color:var(--on-tea);
-  border-radius:5px; padding:3px 10px;
-}
-.buscard .bc-head .dir{font-size:.82rem; color:var(--ink-soft); flex:1}
+.buscard{border:1px solid var(--rule); border-radius:7px; background:var(--paper); overflow:hidden}
+.bc-head{display:flex; align-items:center; gap:9px; padding:11px 13px; border-bottom:1px solid var(--rule); background:var(--tea-wash)}
+.bc-head .rno{font-family:var(--mono); font-size:12px; background:var(--tea); color:var(--on-tea); border-radius:5px; padding:3px 10px}
+.bc-head .dir{font-size:.82rem; color:var(--ink-soft); flex:1}
 .bc-body{padding:12px 13px; display:flex; flex-direction:column; gap:10px}
-.bc-eta{display:flex; align-items:baseline; gap:9px}
-.bc-eta .big{font-family:var(--serif); font-size:1.7rem; color:var(--tea); font-variant-numeric:tabular-nums; line-height:1.1}
-.bc-eta.soon .big{color:var(--seal)}
+.bc-eta{display:flex; align-items:baseline; gap:9px; color:var(--tea)}
+.bc-eta.soon{color:var(--seal)}
+.bc-eta .big{font-family:var(--serif); font-size:1.7rem; font-variant-numeric:tabular-nums; line-height:1.1}
 .bc-eta .unit{font-size:.82rem; color:var(--ink-soft)}
 .bc-next{font-size:.76rem; color:var(--ink-faint); font-variant-numeric:tabular-nums}
 .bc-path{display:flex; align-items:center; gap:8px; font-size:.79rem; color:var(--ink-soft)}
 .bc-path .dot{width:7px; height:7px; border-radius:50%; border:1.5px solid var(--tea); flex:0 0 7px}
 .bc-path .line{flex:1; height:1px; background:var(--rule); position:relative}
-.bc-path .line span{
-  position:absolute; top:-8px; left:50%; transform:translateX(-50%); background:var(--paper);
-  padding:0 6px; font-family:var(--mono); font-size:9.5px; color:var(--mist); white-space:nowrap;
-}
+.bc-path .line span{position:absolute; top:-8px; left:50%; transform:translateX(-50%); background:var(--paper);
+                    padding:0 6px; font-family:var(--mono); font-size:9.5px; color:var(--mist); white-space:nowrap}
 .seg{display:flex; flex-direction:column; gap:9px}
-.seg .opt-head{display:flex; align-items:center; justify-content:space-between; gap:10px}
-.walkcard{
-  border:1px solid var(--rule); border-radius:7px; background:var(--paper); padding:11px 13px;
-  display:flex; align-items:center; gap:10px; font-size:.84rem; color:var(--ink-soft);
-}
+.walkcard{border:1px solid var(--rule); border-radius:7px; background:var(--paper); padding:11px 13px;
+          display:flex; align-items:center; gap:10px; font-size:.84rem; color:var(--ink-soft)}
 .walkcard svg{width:17px; height:17px; flex:0 0 17px; color:var(--mist)}
 .walkcard b{color:var(--ink); font-weight:600}
 
-/* ── Mission ── */
-.tag{
-  display:inline-block; font-family:var(--mono); font-size:9.5px; letter-spacing:.14em; text-transform:uppercase;
-  color:var(--gold); border:1px solid var(--gold); border-radius:3px; padding:2px 8px;
-}
+.tag{display:inline-block; font-family:var(--mono); font-size:9.5px; letter-spacing:.14em; text-transform:uppercase;
+     color:var(--gold); border:1px solid var(--gold); border-radius:3px; padding:2px 8px}
 .mission{border-left:2px solid var(--seal); padding:3px 0 3px 14px; display:flex; flex-direction:column; gap:6px}
-.mission p{font-size:.9rem; line-height:1.8}
+.mission p{font-size:.9rem; line-height:1.85}
 
-/* ── Code entry ── */
-.codein{
-  width:100%; font-family:var(--mono); font-size:1.6rem; letter-spacing:.3em; text-align:center;
-  padding:15px 10px 15px 20px; border:1px solid var(--rule); border-radius:7px;
-  background:var(--paper); color:var(--ink);
-}
+.codein{width:100%; font-family:var(--mono); font-size:1.6rem; letter-spacing:.3em; text-align:center;
+        padding:15px 10px 15px 20px; border:1px solid var(--rule); border-radius:7px; background:var(--paper); color:var(--ink)}
 .codein:focus{border-color:var(--tea); outline:none; box-shadow:0 0 0 3px var(--tea-wash)}
 .err{color:var(--seal); font-size:.8rem; line-height:1.6; min-height:1.2em}
 .orline{display:flex; align-items:center; gap:10px; color:var(--ink-faint); font-family:var(--mono); font-size:.7rem; letter-spacing:.15em}
 .orline::before,.orline::after{content:""; flex:1; height:1px; background:var(--rule)}
 
-/* ── Stamp ── */
 .stamp-stage{display:grid; place-items:center; padding:12px 0; min-height:190px}
 .seal-svg{width:160px; animation:press .55s cubic-bezier(.2,1.5,.4,1) both}
-@keyframes press{
-  0%{opacity:0; transform:scale(2.4) rotate(-16deg)}
-  60%{opacity:1; transform:scale(.94) rotate(-7deg)}
-  100%{opacity:1; transform:scale(1) rotate(-7deg)}
-}
+@keyframes press{0%{opacity:0; transform:scale(2.4) rotate(-16deg)}60%{opacity:1; transform:scale(.94) rotate(-7deg)}100%{opacity:1; transform:scale(1) rotate(-7deg)}}
 @media(prefers-reduced-motion:reduce){.seal-svg{animation:none; transform:rotate(-7deg)}}
 .meter{height:4px; background:var(--surface-2); border-radius:3px; overflow:hidden}
 .meter i{display:block; height:100%; background:var(--seal); transition:width .5s ease}
 
-/* ── Passport ── */
 .pp{background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:15px; display:flex; flex-direction:column; gap:13px}
 .pp-head{display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--rule); padding-bottom:10px}
 .pp-head .t{font-family:var(--serif); font-size:.97rem}
 .pp-head .c{font-family:var(--mono); font-size:.82rem; color:var(--seal); font-variant-numeric:tabular-nums}
 .cells{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
-.cell{
-  aspect-ratio:1; border:1px dashed var(--rule); border-radius:4px; display:grid; place-items:center;
-  background:var(--surface); padding:6px; text-align:center;
-}
+.cell{aspect-ratio:1; border:1px dashed var(--rule); border-radius:4px; display:grid; place-items:center;
+      background:var(--surface); padding:6px; text-align:center}
 .cell.filled{border-style:solid; border-color:var(--seal-wash); background:var(--seal-wash)}
 .cell svg{width:100%; height:100%; transform:rotate(-6deg)}
 .cell .ghost{font-family:var(--mono); font-size:9.5px; color:var(--ink-faint); line-height:1.45}
 
-/* ── Reward ── */
-.voucher{
-  border:1px solid var(--gold); border-radius:8px; background:var(--paper); padding:18px;
-  display:flex; flex-direction:column; gap:11px; align-items:center; text-align:center; position:relative;
-}
-.voucher::before,.voucher::after{
-  content:""; position:absolute; width:16px; height:16px; border-radius:50%;
-  background:var(--surface); border:1px solid var(--gold); top:50%; transform:translateY(-50%);
-}
+.voucher{border:1px solid var(--gold); border-radius:8px; background:var(--paper); padding:18px; display:flex;
+         flex-direction:column; gap:11px; align-items:center; text-align:center; position:relative}
+.voucher::before,.voucher::after{content:""; position:absolute; width:16px; height:16px; border-radius:50%;
+  background:var(--surface); border:1px solid var(--gold); top:50%; transform:translateY(-50%)}
 .voucher::before{left:-9px} .voucher::after{right:-9px}
 .voucher .vcode{font-family:var(--mono); font-size:1.15rem; letter-spacing:.22em; color:var(--gold)}
 .locked{display:flex; flex-direction:column; gap:10px; align-items:center; text-align:center; padding:34px 10px; color:var(--ink-faint)}
 
-/* ── Tab bar ── */
-.tabs{
-  flex:0 0 auto; display:grid; grid-template-columns:repeat(3,1fr);
-  border-top:1px solid var(--rule); background:var(--paper); padding-bottom:env(safe-area-inset-bottom);
-}
+.tabs{flex:0 0 auto; display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--rule);
+      background:var(--paper); padding-bottom:env(safe-area-inset-bottom)}
 .tabs.hide{display:none}
-.tab{
-  position:relative; background:none; border:0; cursor:pointer; padding:9px 4px 12px; color:var(--ink-faint);
-  display:flex; flex-direction:column; align-items:center; gap:3px; font-size:.71rem; letter-spacing:.05em;
-}
+.tab{position:relative; background:none; border:0; cursor:pointer; padding:9px 4px 12px; color:var(--ink-faint);
+     display:flex; flex-direction:column; align-items:center; gap:3px; font-size:.71rem; letter-spacing:.05em}
 .tab svg{width:20px; height:20px}
 .tab[aria-selected="true"]{color:var(--tea)}
 .tab .dot{position:absolute; top:7px; left:calc(50% + 9px); width:6px; height:6px; border-radius:50%; background:var(--seal)}
@@ -309,524 +209,641 @@ button{font:inherit; color:inherit}
   <div class="app">
 
     <header class="top hide" id="top">
-      <button class="back" id="back" hidden aria-label="返回">
+      <button class="back" id="back" hidden aria-label="返回 / 戻る">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg>
       </button>
-      <span class="name" id="topName">貓空集章護照</span>
+      <span class="name" id="topName"></span>
+      <span class="langsw mini" id="langTop"></span>
       <span class="chip" id="topChip">0 / 6</span>
     </header>
 
     <div class="view" id="view">
-
-      <!-- ── 歡迎 / 闖關說明 ── -->
-      <section class="pane on" data-pane="welcome">
-        <div class="wel-art">
-          <svg viewBox="0 0 250 150" aria-hidden="true">
-            <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#1D4633"/><stop offset="1" stop-color="#0E241A"/>
-            </linearGradient></defs>
-            <rect width="250" height="150" fill="url(#sky)"/>
-            <g opacity=".5" fill="none" stroke="#7E9C97" stroke-width="1">
-              <path d="M0 96c30-4 46 6 74 2s44-14 74-10 62 14 102 8"/>
-              <path d="M0 110c34-3 50 7 78 3s46-12 76-8 58 12 96 6"/>
-              <path d="M0 124c30-2 52 6 80 2s44-10 74-6 56 10 96 4"/>
-            </g>
-            <path d="M0 78c26-22 44-30 70-30s40 12 62 12 40-16 62-20 34 2 56 10v98H0z" fill="#163425" opacity=".85"/>
-            <path d="M0 92c30-16 48-20 72-16s42 16 66 14 42-14 66-16 30 4 46 10v66H0z" fill="#102A1E"/>
-            <g stroke="#8E7028" stroke-width="1.1" fill="none" opacity=".95">
-              <path d="M8 34h234"/>
-              <g stroke-width="1"><path d="M56 34v9M132 34v9M204 34v9"/></g>
-            </g>
-            <g fill="#8E7028" opacity=".95">
-              <rect x="45" y="42" width="22" height="16" rx="3"/>
-              <rect x="121" y="42" width="22" height="16" rx="3"/>
-              <rect x="193" y="42" width="22" height="16" rx="3"/>
-            </g>
-            <g fill="#0E241A" opacity=".6">
-              <rect x="49" y="46" width="14" height="8" rx="1.5"/>
-              <rect x="125" y="46" width="14" height="8" rx="1.5"/>
-              <rect x="197" y="46" width="14" height="8" rx="1.5"/>
-            </g>
-            <circle cx="205" cy="24" r="9" fill="#E6EBE2" opacity=".28"/>
-          </svg>
-        </div>
-
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <span class="label">貓空 · 六間茶行</span>
-          <h1 class="h-lg">走一趟山上的茶行<br>把六個章蓋滿</h1>
-          <p class="sub">
-            這是一本存在你手機裡的集章護照。跟著路線走進貓空的茶行，
-            每完成一件小事就蓋一個章 —— 集滿六個，帶走一盒六間茶行合出的聯名茶禮。
-          </p>
-        </div>
-
-        <div>
-          <span class="label">怎麼玩</span>
-          <div class="rules" style="margin-top:8px">
-            <div class="rule"><span class="n">01</span><div>
-              <h3>先選一條路線</h3>
-              <p>看你今天有多少時間，兩小時、半天或一整天都有對應的走法。中途想換也可以，蓋過的章不會不見。</p>
-            </div></div>
-            <div class="rule"><span class="n">02</span><div>
-              <h3>到茶行完成一件小事</h3>
-              <p>試一杯當季的茶、動手炒一次茶菁、或參加一場茶席。每間店的任務都不一樣，大多 15 分鐘內完成。</p>
-            </div></div>
-            <div class="rule"><span class="n">03</span><div>
-              <h3>跟店家要今日集章碼</h3>
-              <p>完成後跟老闆說一聲，他會給你桌上那張卡的四位數字。輸入進來就蓋章 —— 代碼每天換，記得當場問。</p>
-            </div></div>
-            <div class="rule"><span class="n">04</span><div>
-              <h3>集滿六個章換禮盒</h3>
-              <p>護照集滿會出現一組兌換碼，拿去指南青農工作室出示，就能領走聯名小茶禮盒。</p>
-            </div></div>
-          </div>
-        </div>
-
-        <div class="note">
-          <b>出發前先知道</b>
-          <p>
-            不用下載 App、不用註冊帳號。護照存在這支手機的瀏覽器裡，中途關掉頁面不會消失，
-            但清除瀏覽器資料就會歸零。<br>
-            山上店家的公休日不一定，路線裡會顯示今天有開的店。走不動的路段有公車，我們會告訴你下一班還有幾分鐘到。
-          </p>
-        </div>
-
-        <button class="btn" data-go="routes">開始，選一條路線</button>
-      </section>
-
-      <!-- ── 選路線 ── -->
-      <section class="pane" data-pane="routes">
-        <div style="display:flex;flex-direction:column;gap:7px">
-          <span class="label">Step 1</span>
-          <h2 class="h-md">你今天大概有多少時間？</h2>
-          <p class="sub">路線決定要走幾間店。之後隨時可以換，已經蓋的章都會留著。</p>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          <button class="rt" data-route="light" aria-pressed="false">
-            <span class="r-top"><span class="r-name">茶香初訪</span><span class="r-meta">3 站 · 約 2 小時</span></span>
-            <span class="r-desc">纜車站走路就到的三間，以喝茶為主，不趕時間也走得完。</span>
-          </button>
-          <button class="rt" data-route="deep" aria-pressed="true">
-            <span class="r-top"><span class="r-name">職人深度</span><span class="r-meta">6 站 · 約半天</span></span>
-            <span class="r-desc">走進製茶現場，親手炒一次茶菁，喝懂鐵觀音和包種茶差在哪。</span>
-          </button>
-          <button class="rt" data-route="slow" aria-pressed="false">
-            <span class="r-top"><span class="r-name">山城慢遊</span><span class="r-meta">6 站 · 一整天</span></span>
-            <span class="r-desc">把樟樹步道和指南宮排進同一天，走走停停，中間搭公車移動。</span>
-          </button>
-        </div>
-        <button class="btn" data-go="trail">用這條路線出發</button>
-      </section>
-
-      <!-- ── 路線 ── -->
-      <section class="pane" data-pane="trail">
-        <div style="display:flex;flex-direction:column;gap:7px">
-          <span class="label">職人深度 · 6 站</span>
-          <h2 class="h-md">今天的路線</h2>
-          <p class="sub">從動物園站搭貓纜上山，六間茶行沿指南路排開。點任一站看任務內容與怎麼過去。</p>
-        </div>
-        <div id="itin" class="itin"></div>
-      </section>
-
-      <!-- ── 站點 ── -->
-      <section class="pane" data-pane="stop"><div id="stopDetail" style="display:flex;flex-direction:column;gap:16px"></div></section>
-
-      <!-- ── 公車 ── -->
-      <section class="pane" data-pane="busview"><div id="busDetail" style="display:flex;flex-direction:column;gap:16px"></div></section>
-
-      <!-- ── 輸入代碼 ── -->
-      <section class="pane" data-pane="code">
-        <div style="display:flex;flex-direction:column;gap:7px">
-          <span class="label" id="codeShop">—</span>
-          <h2 class="h-md">輸入今日集章碼</h2>
-          <p class="sub">完成任務後跟店家要四位數字，或直接掃桌上那張卡的 QR。</p>
-        </div>
-        <input class="codein" id="codeInput" inputmode="numeric" maxlength="4" placeholder="0000" aria-label="集章碼">
-        <p class="err" id="codeErr"></p>
-        <button class="btn seal" id="codeSubmit">蓋章</button>
-        <p class="orline">或</p>
-        <button class="btn ghost" id="codeScan">掃描桌上的 QR</button>
-      </section>
-
-      <!-- ── 蓋章成功 ── -->
-      <section class="pane" data-pane="done">
-        <span class="label">集章成功</span>
-        <div class="stamp-stage" id="stampStage"></div>
-        <h2 class="h-md" id="doneTitle">—</h2>
-        <p class="sub" id="doneNote">—</p>
-        <div class="meter"><i id="doneMeter" style="width:0%"></i></div>
-        <span class="label" id="doneCount">—</span>
-        <div id="doneNext"></div>
-        <button class="btn" data-go="trail">回到路線</button>
-      </section>
-
-      <!-- ── 護照 ── -->
-      <section class="pane" data-pane="passport">
-        <div style="display:flex;flex-direction:column;gap:7px">
-          <span class="label">My Passport</span>
-          <h2 class="h-md">我的集章護照</h2>
-        </div>
-        <div class="pp">
-          <div class="pp-head"><span class="t">職人深度 · 貓空</span><span class="c" id="ppCount">0 / 6</span></div>
-          <div class="cells" id="cells"></div>
-          <div class="meter"><i id="ppMeter" style="width:0%"></i></div>
-        </div>
-        <p class="tiny">護照存在這支手機裡。想換手機繼續，或留一份紀錄，可以在集滿後綁定 Email。</p>
-      </section>
-
-      <!-- ── 禮盒 ── -->
-      <section class="pane" data-pane="reward"><div id="rewardBox" style="display:flex;flex-direction:column;gap:14px"></div></section>
-
+      <section class="pane on" data-pane="welcome"  id="pWelcome"></section>
+      <section class="pane"    data-pane="routes"   id="pRoutes"></section>
+      <section class="pane"    data-pane="trail"    id="pTrail"></section>
+      <section class="pane"    data-pane="stop"     id="pStop"></section>
+      <section class="pane"    data-pane="busview"  id="pBus"></section>
+      <section class="pane"    data-pane="code"     id="pCode"></section>
+      <section class="pane"    data-pane="done"     id="pDone"></section>
+      <section class="pane"    data-pane="passport" id="pPassport"></section>
+      <section class="pane"    data-pane="reward"   id="pReward"></section>
     </div>
 
-    <nav class="tabs hide" id="tabs" role="tablist" aria-label="主要功能">
-      <button class="tab" role="tab" data-tab="trail" aria-selected="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 19l5-14 6 10 5-8"/><circle cx="9" cy="5" r="1.6"/><circle cx="15" cy="15" r="1.6"/></svg>
-        路線
-      </button>
-      <button class="tab" role="tab" data-tab="passport" aria-selected="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10.5" r="3"/><path d="M9 16.5h6"/></svg>
-        護照
-      </button>
-      <button class="tab" role="tab" data-tab="reward" aria-selected="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="1.5"/><path d="M3 12h18M12 8v12"/><path d="M12 8s-1-4-3.5-4S7 8 12 8s5-4 3.5-4S12 8 12 8Z"/></svg>
-        <span class="dot" id="rewardDot" hidden></span>
-        禮盒
-      </button>
-    </nav>
-
+    <nav class="tabs hide" id="tabs" role="tablist"></nav>
   </div>
-  <p class="desknote">Demo · 建議用手機開啟</p>
+  <p class="desknote" id="deskNote"></p>
 </div>
 
 <script>
-/* ─── 資料（示意）─────────────────────────── */
+/* ══ 語言 ═══════════════════════════════════ */
+let LANG = 'zh';
+try { const s = localStorage.getItem('mk-lang'); if (s === 'ja' || s === 'zh') LANG = s; } catch(e){}
+
+const T = {
+  zh:{
+    appName:"貓空集章護照", back:"返回",
+    langZh:"中文", langJa:"日本語", langZhMini:"中", langJaMini:"日",
+    deskNote:"Demo · 建議用手機開啟",
+    tabTrail:"路線", tabPass:"護照", tabReward:"禮盒",
+
+    welEyebrow:"貓空 · 六間茶行",
+    welTitle:"走一趟山上的茶行<br>把六個章蓋滿",
+    welIntro:"這是一本存在你手機裡的集章護照。跟著路線走進貓空的茶行，每完成一件小事就蓋一個章 —— 集滿六個，帶走一盒六間茶行合出的聯名茶禮。",
+    welHow:"怎麼玩",
+    rules:[
+      ["先選一條路線","看你今天有多少時間，兩小時、半天或一整天都有對應的走法。中途想換也可以，蓋過的章不會不見。"],
+      ["到茶行完成一件小事","試一杯當季的茶、動手炒一次茶菁、或參加一場茶席。每間店的任務都不一樣，大多 15 分鐘內完成。"],
+      ["跟店家要今日集章碼","完成後跟老闆說一聲，他會給你桌上那張卡的四位數字。輸入進來就蓋章 —— 代碼每天換，記得當場問。"],
+      ["集滿六個章換禮盒","護照集滿會出現一組兌換碼，拿去指南青農工作室出示，就能領走聯名小茶禮盒。"]
+    ],
+    noteTitle:"出發前先知道",
+    noteBody:"不用下載 App、不用註冊帳號。護照存在這支手機的瀏覽器裡，中途關掉頁面不會消失，但清除瀏覽器資料就會歸零。<br>山上店家的公休日不一定，路線裡會顯示今天有開的店。走不動的路段有公車，我們會告訴你下一班還有幾分鐘到。",
+    welStart:"開始，選一條路線",
+
+    routeStep:"Step 1", routeTitle:"你今天大概有多少時間？",
+    routeSub:"路線決定要走幾間店。之後隨時可以換，已經蓋的章都會留著。",
+    routeGo:"用這條路線出發",
+    routes:[
+      ["茶香初訪","3 站 · 約 2 小時","纜車站走路就到的三間，以喝茶為主，不趕時間也走得完。"],
+      ["職人深度","6 站 · 約半天","走進製茶現場，親手炒一次茶菁，喝懂鐵觀音和包種茶差在哪。"],
+      ["山城慢遊","6 站 · 一整天","把樟樹步道和指南宮排進同一天，走走停停，中間搭公車移動。"]
+    ],
+    routeName:"職人深度",
+    trailEyebrow:"職人深度 · 6 站", trailTitle:"今天的路線",
+    trailSub:"從動物園站搭貓纜上山，六間茶行沿指南路排開。點任一站看任務內容與怎麼過去。",
+    gondola:"從<b>動物園站</b>搭貓空纜車上山，約 <b>20 分</b>，抵達貓空站後開始第一站。",
+    walkMin:n=>`步行 ${n} 分`, stopDone:"已蓋章", stopTodo:"未完成",
+    stopNo:n=>`第 ${n} 站`, howGo:"怎麼過去", toDoHere:"這一站要做的事",
+    walkFrom:(f,n)=>`從${f}步行 <b>${n} 分鐘</b>`, walkFromSlope:(f,n)=>`從${f}步行 <b>${n} 分鐘</b>，山路有坡`,
+    stopsN:n=>`${n} 站 ·`,
+    ctaCode:"我完成了，輸入集章碼", codeHint:"代碼要當場跟店家拿，每天都會換。",
+    doneHere:"已完成", doneHereSub:"這一站蓋好了，往下一站出發。",
+
+    busTop:"搭公車過去", busToStop:(n,name)=>`前往第 ${n} 站 · ${name}`,
+    busTitle:"這段路可以搭公車",
+    busSub:(w,s,r)=>`走路要 ${w} 分鐘，山路有坡。搭公車 ${s} 站就到，車程約 ${r} 分。`,
+    busArrive:"後進站", busNext:m=>`再下一班 ${m} 分後`, busPathMeta:(s,r)=>`${s} 站 · ${r} 分`,
+    busWalkAlt:w=>`不想等車？沿指南路走 <b>${w} 分鐘</b>，一路都是茶園，沒有難走的路段。`,
+    busSeeStop:"看這一站的任務",
+    busDisclaim:"到站時間為 Demo 模擬。正式版本接台北市公車動態資訊，實際班距以現場站牌為準。",
+    etaNow:"進站中", etaSoon:"即將進站", etaMin:m=>`${m} 分`,
+
+    codeTitle:"輸入今日集章碼",
+    codeSub:"完成任務後跟店家要四位數字，或直接掃桌上那張卡的 QR。",
+    codeBtn:"蓋章", codeOr:"或", codeScan:"掃描桌上的 QR",
+    errLen:"集章碼是四位數字，再確認一次。",
+    errOther:(o,c)=>`這是「${o}」的代碼，不能用在${c}。請跟本店的老闆拿今天的代碼。`,
+    errWrong:"代碼不對。集章碼每天都會換，請跟店家確認今天的四位數字。",
+
+    doneEyebrow:"集章成功", doneTitle:n=>`${n} 的章蓋好了`,
+    doneNextBus:(n,w,r,s)=>`下一站是「${n}」，走路 ${w} 分，或搭 ${r} ${s} 站。`,
+    doneNextWalk:(n,w)=>`下一站是「${n}」，從這裡步行 ${w} 分鐘。`,
+    doneAll:"六個章全部集滿，禮盒兌換碼已經開放。",
+    doneCount:(a,b)=>`${a} / ${b} 已蓋章`,
+    doneSeeNext:"看下一站怎麼過去", doneGetGift:"去領禮盒", doneBack:"回到路線",
+
+    ppTitle:"我的集章護照", ppRoute:"職人深度 · 貓空",
+    ppNote:"護照存在這支手機裡。想換手機繼續，或留一份紀錄，可以在集滿後綁定 Email。",
+
+    rwLeft:n=>`還差 ${n} 個章`,
+    rwLeftSub:"集滿六個章後，這裡會出現兌換碼，拿去指南青農工作室就能領走聯名小茶禮盒。",
+    rwGotTitle:"已經領走了", rwGotSub:"禮盒已在指南青農工作室核銷。季節限定的新路線開放時會通知你。",
+    rwEyebrow:"恭喜走完職人深度路線", rwTitle:"青農聯名小茶禮盒",
+    rwSub:"六間茶行各一款單品茶包，附一支聯名竹製茶則，和一張印著你路線的記錄卡。",
+    rwCodeLabel:"兌換碼 · 限用一次",
+    rwWhere:"兌換點：指南青農工作室（指南宮站步行 4 分）<br>把這個畫面給店家看，由店家核銷",
+    rwRedeem:"已經到店，請店家核銷"
+  },
+
+  ja:{
+    appName:"猫空スタンプパスポート", back:"戻る",
+    langZh:"中文", langJa:"日本語", langZhMini:"中", langJaMini:"日",
+    deskNote:"Demo · スマホでの表示を推奨",
+    tabTrail:"ルート", tabPass:"パスポート", tabReward:"ギフト",
+
+    welEyebrow:"猫空・6軒の茶館",
+    welTitle:"山の茶館をめぐって<br>スタンプを6つ集めよう",
+    welIntro:"スマホの中に入るスタンプパスポートです。ルートに沿って猫空の茶館をたずね、小さな体験をひとつ終えるごとにスタンプがひとつ。6つ集めると、6軒が一緒に作った限定の茶ギフトボックスがもらえます。",
+    welHow:"遊び方",
+    rules:[
+      ["まずルートを選ぶ","今日つかえる時間に合わせて、2時間・半日・1日から選べます。途中で変えても、押したスタンプは消えません。"],
+      ["茶館で小さな体験をひとつ","旬のお茶を飲みくらべる、茶葉を手炒りする、茶席に参加する。お店ごとに内容が違い、たいてい15分ほどで終わります。"],
+      ["お店で「本日の番号」をもらう","終わったら店主に声をかけてください。卓上のカードにある4桁の数字を教えてくれます。番号は毎日変わるので、その場で聞いてください。"],
+      ["6つ集めてギフトと交換","パスポートが埋まると引換コードが出ます。指南青農工房で見せると、限定の茶ギフトボックスと交換できます。"]
+    ],
+    noteTitle:"出発する前に",
+    noteBody:"アプリのダウンロードも会員登録も不要です。パスポートはこのスマホのブラウザに保存されるので、ページを閉じても消えません。ただしブラウザのデータを削除すると最初からになります。<br>山の上のお店は不定休です。ルート画面には本日開いているお店が表示されます。歩くのがつらい区間にはバスがあり、次のバスがあと何分で来るかをお知らせします。",
+    welStart:"はじめる（ルートを選ぶ）",
+
+    routeStep:"Step 1", routeTitle:"今日はどのくらい時間がありますか？",
+    routeSub:"ルートで回るお店の数が決まります。あとから変更できますし、押したスタンプはそのまま残ります。",
+    routeGo:"このルートで出発",
+    routes:[
+      ["茶さんぽ入門","3軒 · 約2時間","ロープウェイ駅から歩いてすぐの3軒。お茶を飲むのが中心で、のんびりでも回れます。"],
+      ["職人めぐり","6軒 · 約半日","製茶の現場に入り、茶葉を手炒り。鉄観音と包種茶の違いがわかるようになります。"],
+      ["山あるき一日","6軒 · 1日","樟樹歩道と指南宮を同じ日に。ゆっくり歩き、区間によってはバスで移動します。"]
+    ],
+    routeName:"職人めぐり",
+    trailEyebrow:"職人めぐり・6軒", trailTitle:"本日のルート",
+    trailSub:"動物園駅から猫空ロープウェイで山へ。指南路沿いに6軒の茶館が並びます。気になる店をタップすると、体験内容と行き方が見られます。",
+    gondola:"<b>動物園駅</b>から猫空ロープウェイで約 <b>20分</b>。猫空駅に着いたら1軒目からスタートです。",
+    walkMin:n=>`徒歩 ${n} 分`, stopDone:"スタンプ済", stopTodo:"未達成",
+    stopNo:n=>`${n} 軒目`, howGo:"行き方", toDoHere:"ここでやること",
+    walkFrom:(f,n)=>`${f}から徒歩 <b>${n} 分</b>`, walkFromSlope:(f,n)=>`${f}から徒歩 <b>${n} 分</b>、坂道あり`,
+    stopsN:n=>`${n} 駅 ·`,
+    ctaCode:"体験しました。番号を入力する", codeHint:"番号はその場で店主にもらってください。毎日変わります。",
+    doneHere:"達成済み", doneHereSub:"この店のスタンプは押しました。次の店へ。",
+
+    busTop:"バスで行く", busToStop:(n,name)=>`${n} 軒目へ · ${name}`,
+    busTitle:"この区間はバスが使えます",
+    busSub:(w,s,r)=>`歩くと ${w} 分、坂道もあります。バスなら ${s} 駅、乗車およそ ${r} 分です。`,
+    busArrive:"で到着", busNext:m=>`次の次は ${m} 分後`, busPathMeta:(s,r)=>`${s} 駅 · ${r} 分`,
+    busWalkAlt:w=>`待ちたくないときは、指南路沿いに <b>${w} 分</b>。ずっと茶畑で、歩きにくい場所はありません。`,
+    busSeeStop:"この店の体験を見る",
+    busDisclaim:"到着時刻はデモ用のシミュレーションです。正式版は台北市バス運行情報と連携します。実際の時刻は現地のバス停でご確認ください。",
+    etaNow:"到着中", etaSoon:"まもなく", etaMin:m=>`${m} 分`,
+
+    codeTitle:"本日のスタンプ番号を入力",
+    codeSub:"体験が終わったら、店主に4桁の数字を聞くか、卓上のQRを読み取ってください。",
+    codeBtn:"スタンプを押す", codeOr:"または", codeScan:"卓上のQRを読み取る",
+    errLen:"スタンプ番号は4桁の数字です。もう一度ご確認ください。",
+    errOther:(o,c)=>`これは「${o}」の番号です。${c}では使えません。このお店の本日の番号を店主にお聞きください。`,
+    errWrong:"番号が違います。番号は毎日変わりますので、本日の4桁を店主にご確認ください。",
+
+    doneEyebrow:"スタンプ獲得", doneTitle:n=>`${n} のスタンプを押しました`,
+    doneNextBus:(n,w,r,s)=>`次は「${n}」。徒歩 ${w} 分、または ${r} で ${s} 駅です。`,
+    doneNextWalk:(n,w)=>`次は「${n}」。ここから徒歩 ${w} 分です。`,
+    doneAll:"6つすべて集まりました。引換コードが使えます。",
+    doneCount:(a,b)=>`${b} 個中 ${a} 個`,
+    doneSeeNext:"次の店への行き方を見る", doneGetGift:"ギフトを受け取る", doneBack:"ルートに戻る",
+
+    ppTitle:"わたしのスタンプパスポート", ppRoute:"職人めぐり・猫空",
+    ppNote:"パスポートはこのスマホに保存されます。機種変更のときや記録を残したいときは、6つ集めたあとにメールアドレスを登録できます。",
+
+    rwLeft:n=>`あと ${n} 個`,
+    rwLeftSub:"6つ集めるとここに引換コードが出ます。指南青農工房で限定の茶ギフトボックスと交換できます。",
+    rwGotTitle:"交換済みです", rwGotSub:"ギフトは指南青農工房で受け取り済みです。季節限定の新ルートが始まったらお知らせします。",
+    rwEyebrow:"職人めぐり 完走", rwTitle:"青年茶農コラボ 茶ギフトボックス",
+    rwSub:"6軒の茶館から1種類ずつのティーバッグ、コラボの竹製茶則、そしてあなたのルートが印刷された記録カード入り。",
+    rwCodeLabel:"引換コード・1回限り",
+    rwWhere:"引換場所：指南青農工房（指南宮駅から徒歩4分）<br>この画面を店主にお見せください",
+    rwRedeem:"お店で見せて交換する"
+  }
+};
+const t = () => T[LANG];
+
+/* ══ 資料（示意）════════════════════════════ */
 const BUS = {
-  b15  : {no:"棕15",   dir:"往貓空",     headway:15},
-  left : {no:"貓空左線", dir:"往二格公園", headway:20},
-  right: {no:"貓空右線", dir:"往草湳",    headway:20},
-  s10  : {no:"小10",    dir:"往指南宮",   headway:20}
+  b15  : {no:"棕15",    headway:15, zh:{dir:"往貓空"},     ja:{dir:"猫空ゆき"}},
+  left : {no:"貓空左線", headway:20, zh:{dir:"往二格公園"}, ja:{dir:"二格公園ゆき"}},
+  s10  : {no:"小10",     headway:20, zh:{dir:"往指南宮"},   ja:{dir:"指南宮ゆき"}}
 };
 
 const SHOPS = [
-  {id:1, name:"雲隱茶坊", spot:"貓空纜車站旁", tag:"鐵觀音", code:"7314", seal:"雲隱",
-   mission:"試飲當季鐵觀音，請老闆講一次這批茶的焙火程度，在單子上圈出你喝到的味道。",
-   why:"重焙鐵觀音是這間店三代都在做的事，先讓你的舌頭有個基準。",
-   leg:{walk:3, from:"貓空纜車站"}},
+  {id:1, code:"7314", seal:"雲隱", leg:{walk:3},
+   zh:{name:"雲隱茶坊", spot:"貓空纜車站旁", tag:"鐵觀音", from:"貓空纜車站",
+       mission:"試飲當季鐵觀音，請老闆講一次這批茶的焙火程度，在單子上圈出你喝到的味道。",
+       why:"重焙鐵觀音是這間店三代都在做的事，先讓你的舌頭有個基準。"},
+   ja:{name:"雲隠茶坊", spot:"猫空ロープウェイ駅そば", tag:"鉄観音", from:"猫空ロープウェイ駅",
+       mission:"旬の鉄観音を飲みくらべ、店主に焙煎の度合いを聞いて、感じた味をシートに丸で囲んでください。",
+       why:"深めの焙煎の鉄観音は、この店が三代つづけてきたもの。まずは味の基準をつくります。"}},
 
-  {id:2, name:"石階製茶所", spot:"樟樹步道口", tag:"手炒體驗", code:"2085", seal:"石階",
-   mission:"體驗手炒茶菁 15 分鐘，親手把一把生葉炒到出香。",
-   why:"炒鍋就在店中央，這是整條路線唯一能動手的一站。",
-   leg:{walk:8, from:"雲隱茶坊", bus:{key:"left", from:"貓空站", to:"樟樹步道口", stops:1, ride:3}}},
+  {id:2, code:"2085", seal:"石階",
+   leg:{walk:8, bus:{key:"left", stops:1, ride:3, zh:{from:"貓空站", to:"樟樹步道口"}, ja:{from:"猫空", to:"樟樹歩道入口"}}},
+   zh:{name:"石階製茶所", spot:"樟樹步道口", tag:"手炒體驗", from:"雲隱茶坊",
+       mission:"體驗手炒茶菁 15 分鐘，親手把一把生葉炒到出香。",
+       why:"炒鍋就在店中央，這是整條路線唯一能動手的一站。"},
+   ja:{name:"石段製茶所", spot:"樟樹歩道入口", tag:"手炒り体験", from:"雲隠茶坊",
+       mission:"茶葉の手炒りを15分体験。生の葉をひとつかみ、香りが立つまで自分の手で炒ります。",
+       why:"炒り鍋が店の真ん中にあります。このルートで唯一、手を動かせる店です。"}},
 
-  {id:3, name:"三分埔茶園", spot:"茶園步道旁", tag:"產地", code:"4460", seal:"三分",
-   mission:"走一段茶園步道，拍下一株正在採收的茶樹，回店裡出示照片。",
-   why:"先看到茶長在哪裡，後面幾站聽老闆講話才有畫面。",
-   leg:{walk:6, from:"石階製茶所"}},
+  {id:3, code:"4460", seal:"三分", leg:{walk:6},
+   zh:{name:"三分埔茶園", spot:"茶園步道旁", tag:"產地", from:"石階製茶所",
+       mission:"走一段茶園步道，拍下一株正在採收的茶樹，回店裡出示照片。",
+       why:"先看到茶長在哪裡，後面幾站聽老闆講話才有畫面。"},
+   ja:{name:"三分埔茶園", spot:"茶畑の遊歩道沿い", tag:"産地", from:"石段製茶所",
+       mission:"茶畑の遊歩道を少し歩き、収穫中の茶樹を1枚撮って店で見せてください。",
+       why:"茶がどこで育つかを先に見ておくと、このあとの話が絵で浮かびます。"}},
 
-  {id:4, name:"樟湖手作茶屋", spot:"樟湖步道", tag:"聯名商品", code:"9137", seal:"樟湖",
-   mission:"挑一款青農聯名商品帶走（茶包組、竹製茶則或冷泡瓶）。",
-   why:"這站是聯名商品的主要出貨點，也是路線的中繼休息點。",
-   leg:{walk:12, from:"三分埔茶園", bus:{key:"b15", from:"三玄宮站", to:"樟湖站", stops:2, ride:5}}},
+  {id:4, code:"9137", seal:"樟湖",
+   leg:{walk:12, bus:{key:"b15", stops:2, ride:5, zh:{from:"三玄宮站", to:"樟湖站"}, ja:{from:"三玄宮", to:"樟湖"}}},
+   zh:{name:"樟湖手作茶屋", spot:"樟湖步道", tag:"聯名商品", from:"三分埔茶園",
+       mission:"挑一款青農聯名商品帶走（茶包組、竹製茶則或冷泡瓶）。",
+       why:"這站是聯名商品的主要出貨點，也是路線的中繼休息點。"},
+   ja:{name:"樟湖手作り茶屋", spot:"樟湖歩道", tag:"コラボ商品", from:"三分埔茶園",
+       mission:"青年茶農コラボ商品からひとつ選んで持ち帰りましょう（ティーバッグセット、竹の茶則、水出しボトル）。",
+       why:"コラボ商品のメインの店であり、ルート中間の休憩ポイントでもあります。"}},
 
-  {id:5, name:"貓空山嵐茶行", spot:"指南路三段", tag:"冷泡 DIY", code:"5628", seal:"山嵐",
-   mission:"完成冷泡茶 DIY，帶走一瓶自己配的冷泡，順便學會回家的比例。",
-   why:"下午走到這裡通常正渴，冷泡是最好接的一站。",
-   leg:{walk:5, from:"樟湖手作茶屋"}},
+  {id:5, code:"5628", seal:"山嵐", leg:{walk:5},
+   zh:{name:"貓空山嵐茶行", spot:"指南路三段", tag:"冷泡 DIY", from:"樟湖手作茶屋",
+       mission:"完成冷泡茶 DIY，帶走一瓶自己配的冷泡，順便學會回家的比例。",
+       why:"下午走到這裡通常正渴，冷泡是最好接的一站。"},
+   ja:{name:"猫空山嵐茶行", spot:"指南路三段", tag:"水出しDIY", from:"樟湖手作り茶屋",
+       mission:"水出し茶づくりを体験し、自分で配合した1本を持ち帰り。家でつくるときの比率も覚えられます。",
+       why:"午後にここまで歩くとちょうど喉が渇くころ。水出しがいちばん効きます。"}},
 
-  {id:6, name:"指南青農工作室", spot:"指南宮站旁", tag:"茶席", code:"3702", seal:"指南",
-   mission:"參加 30 分鐘的茶席，用同一支茶泡出三種不同濃度。",
-   why:"由青農主持，是這條路線的收尾，也是禮盒的兌換點。",
-   leg:{walk:16, from:"貓空山嵐茶行", bus:{key:"s10", from:"貓空站", to:"指南宮站", stops:3, ride:7}}}
+  {id:6, code:"3702", seal:"指南",
+   leg:{walk:16, bus:{key:"s10", stops:3, ride:7, zh:{from:"貓空站", to:"指南宮站"}, ja:{from:"猫空", to:"指南宮"}}},
+   zh:{name:"指南青農工作室", spot:"指南宮站旁", tag:"茶席", from:"貓空山嵐茶行",
+       mission:"參加 30 分鐘的茶席，用同一支茶泡出三種不同濃度。",
+       why:"由青農主持，是這條路線的收尾，也是禮盒的兌換點。"},
+   ja:{name:"指南青農工房", spot:"指南宮駅そば", tag:"茶席", from:"猫空山嵐茶行",
+       mission:"30分の茶席に参加。同じ茶葉で3種類の濃さを淹れ分けます。",
+       why:"青年茶農が主宰する、このルートの締めくくり。ギフトの引換場所でもあります。"}}
 ];
 const TOTAL = SHOPS.length;
+const L = o => o[LANG];
 
-/* ─── 狀態 ─────────────────────────────────── */
-let stamped = new Set();
-let activeShop = null;
-let redeemed = false;
-let history = [];
+/* ══ 狀態 ═══════════════════════════════════ */
+let stamped = new Set(), activeShop = null, busShop = null, lastStamp = null;
+let redeemed = false, history = [], voucher = null, routePick = 1;
 
 const $ = s => document.querySelector(s);
 const panes = document.querySelectorAll('.pane');
+const cur = () => document.querySelector('.pane.on')?.dataset.pane;
 
-/* ─── 公車到站模擬 ─────────────────────────── */
-/* 每個路段各自維持一組到站時刻；過站後自動補下一班 */
+/* ══ 公車到站模擬 ═══════════════════════════ */
 const queues = {};
 function queueFor(id, headway){
   if (!queues[id]){
-    const now = Date.now();
-    let t = now + (1 + Math.random()*headway*0.55) * 60000;
+    let x = Date.now() + (1 + Math.random()*headway*0.55)*60000;
     const q = [];
-    for (let i=0; i<4; i++){ q.push(t); t += (headway*0.75 + Math.random()*headway*0.5) * 60000; }
+    for (let i=0;i<4;i++){ q.push(x); x += (headway*0.75 + Math.random()*headway*0.5)*60000; }
     queues[id] = q;
   }
   const q = queues[id], now = Date.now();
   while (q[0] < now - 40000){ q.shift(); q.push(q[q.length-1] + headway*60000); }
   return q;
 }
-function etaMins(ts){ return Math.max(0, Math.round((ts - Date.now())/60000)); }
-function etaText(m){ return m <= 0 ? '進站中' : m === 1 ? '即將進站' : m + ' 分'; }
+const etaMins = ts => Math.max(0, Math.round((ts - Date.now())/60000));
+const etaText = m => m <= 0 ? t().etaNow : m === 1 ? t().etaSoon : t().etaMin(m);
 
-function etaChipHTML(id, headway){
-  const q = queueFor(id, headway), m = etaMins(q[0]);
+function etaChip(id, headway){
+  const m = etaMins(queueFor(id, headway)[0]);
   return `<span class="eta ${m<=2?'soon':''}" data-eta="${id}" data-headway="${headway}">
     <span class="pulse"></span><span class="etatext">${etaText(m)}</span></span>`;
 }
-
 function tickETA(){
   document.querySelectorAll('[data-eta]').forEach(el=>{
-    const q = queueFor(el.dataset.eta, +el.dataset.headway);
-    const m = etaMins(q[0]);
+    const q = queueFor(el.dataset.eta, +el.dataset.headway), m = etaMins(q[0]);
     el.classList.toggle('soon', m <= 2);
-    const t = el.querySelector('.etatext');
-    if (t) t.textContent = etaText(m);
-    const nx = el.parentElement.querySelector('[data-eta-next]');
-    if (nx) nx.textContent = `再下一班 ${etaMins(q[1])} 分後`;
+    const a = el.querySelector('.etatext'); if (a) a.textContent = etaText(m);
+    const b = el.parentElement.querySelector('[data-eta-next]'); if (b) b.textContent = t().busNext(etaMins(q[1]));
   });
 }
 setInterval(tickETA, 5000);
 
-/* ─── 導覽 ─────────────────────────────────── */
-const TAB_OF = {trail:'trail', stop:'trail', busview:'trail', code:'trail', done:'trail', passport:'passport', reward:'reward'};
-function show(name, push=true){
-  const cur = document.querySelector('.pane.on')?.dataset.pane;
-  if (push && cur && cur !== name) history.push(cur);
-  panes.forEach(p => p.classList.toggle('on', p.dataset.pane === name));
-  $('#view').scrollTop = 0;
-
-  const chrome = name !== 'welcome';
-  $('#top').classList.toggle('hide', !chrome);
-  $('#tabs').classList.toggle('hide', !chrome || name === 'routes');
-  $('#back').hidden = !['stop','busview','code','routes'].includes(name);
-  $('#topChip').textContent = `${stamped.size} / ${TOTAL}`;
-  $('#topName').textContent =
-    name === 'stop'  && activeShop ? SHOPS.find(s=>s.id===activeShop).name :
-    name === 'code'  && activeShop ? SHOPS.find(s=>s.id===activeShop).name :
-    name === 'busview' ? '搭公車過去' : '貓空集章護照';
-
-  const t = TAB_OF[name];
-  document.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === t)));
-  tickETA();
-}
-$('#back').onclick = () => { const prev = history.pop(); show(prev || 'trail', false); };
-
-/* ─── 印章 ─────────────────────────────────── */
-function sealSVG(shop, cls){
-  return `<svg class="${cls||''}" viewBox="0 0 100 100" role="img" aria-label="${shop.name} 的印章">
+/* ══ 圖示 ═══════════════════════════════════ */
+const WALK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="4" r="1.8"/><path d="M11 21l1.6-5.4L10 13l.8-4.4 3.4-1.4 2.6 3 2.7 1M10.8 8.6L7.6 10 6 14M12.6 15.6L9 20"/></svg>`;
+const GONDOLA = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6h18M12 6v4M6 10h12l-1.5 5h-9z"/><path d="M9 19h6"/></svg>`;
+function sealSVG(s, cls){
+  return `<svg class="${cls||''}" viewBox="0 0 100 100" role="img" aria-label="${L(s).name}">
     <circle cx="50" cy="50" r="45" fill="none" style="stroke:var(--seal)" stroke-width="3.5" opacity=".9"/>
     <circle cx="50" cy="50" r="37" fill="none" style="stroke:var(--seal)" stroke-width="1" opacity=".55"/>
-    <text x="50" y="45" text-anchor="middle" style="fill:var(--seal);font-family:var(--serif);font-size:26px;font-weight:600;letter-spacing:1px">${shop.seal}</text>
+    <text x="50" y="45" text-anchor="middle" style="fill:var(--seal);font-family:var(--serif);font-size:26px;font-weight:600;letter-spacing:1px">${s.seal}</text>
     <text x="50" y="66" text-anchor="middle" opacity=".85" style="fill:var(--seal);font-family:var(--mono);font-size:10.5px;letter-spacing:2.5px">MAOKONG</text>
-    <text x="50" y="78" text-anchor="middle" opacity=".7" style="fill:var(--seal);font-family:var(--mono);font-size:7px;letter-spacing:1.4px">NO.${String(shop.id).padStart(2,'0')}</text>
+    <text x="50" y="78" text-anchor="middle" opacity=".7" style="fill:var(--seal);font-family:var(--mono);font-size:7px;letter-spacing:1.4px">NO.${String(s.id).padStart(2,'0')}</text>
   </svg>`;
 }
-const WALK_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="4" r="1.8"/><path d="M11 21l1.6-5.4L10 13l.8-4.4 3.4-1.4 2.6 3 2.7 1M10.8 8.6L7.6 10 6 14M12.6 15.6L9 20"/></svg>`;
+const langSw = mini => `
+  <span class="langsw${mini?' mini':''}">
+    <button data-lang="zh" aria-pressed="${LANG==='zh'}">${mini?T.zh.langZhMini:T.zh.langZh}</button>
+    <button data-lang="ja" aria-pressed="${LANG==='ja'}">${mini?T.ja.langJaMini:T.ja.langJa}</button>
+  </span>`;
 
-/* ─── 路線清單 ─────────────────────────────── */
-function legHTML(s){
-  const L = s.leg;
-  let h = `<div class="leg"><span class="walk">${WALK_ICON} 步行 ${L.walk} 分</span>`;
-  if (L.bus){
-    const b = BUS[L.bus.key];
-    h += `<button class="bus" data-bus="${s.id}">
-            <span class="rno">${b.no}</span>${etaChipHTML('leg'+s.id, b.headway)}</button>`;
-  }
-  return h + `</div>`;
+/* ══ 各頁渲染 ═══════════════════════════════ */
+function fillWelcome(){
+  const x = t();
+  $('#pWelcome').innerHTML = `
+    <div class="wel-top">${langSw(false)}</div>
+    <div class="wel-art">
+      <svg viewBox="0 0 250 150" aria-hidden="true">
+        <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1D4633"/><stop offset="1" stop-color="#0E241A"/></linearGradient></defs>
+        <rect width="250" height="150" fill="url(#sky)"/>
+        <g opacity=".5" fill="none" stroke="#7E9C97" stroke-width="1">
+          <path d="M0 96c30-4 46 6 74 2s44-14 74-10 62 14 102 8"/>
+          <path d="M0 110c34-3 50 7 78 3s46-12 76-8 58 12 96 6"/>
+          <path d="M0 124c30-2 52 6 80 2s44-10 74-6 56 10 96 4"/>
+        </g>
+        <path d="M0 78c26-22 44-30 70-30s40 12 62 12 40-16 62-20 34 2 56 10v98H0z" fill="#163425" opacity=".85"/>
+        <path d="M0 92c30-16 48-20 72-16s42 16 66 14 42-14 66-16 30 4 46 10v66H0z" fill="#102A1E"/>
+        <g stroke="#8E7028" stroke-width="1.1" fill="none"><path d="M8 34h234"/><path d="M56 34v9M132 34v9M204 34v9" stroke-width="1"/></g>
+        <g fill="#8E7028"><rect x="45" y="42" width="22" height="16" rx="3"/><rect x="121" y="42" width="22" height="16" rx="3"/><rect x="193" y="42" width="22" height="16" rx="3"/></g>
+        <g fill="#0E241A" opacity=".6"><rect x="49" y="46" width="14" height="8" rx="1.5"/><rect x="125" y="46" width="14" height="8" rx="1.5"/><rect x="197" y="46" width="14" height="8" rx="1.5"/></g>
+        <circle cx="205" cy="24" r="9" fill="#E6EBE2" opacity=".28"/>
+      </svg>
+    </div>
+    <div class="stack">
+      <span class="label">${x.welEyebrow}</span>
+      <h1 class="h-lg">${x.welTitle}</h1>
+      <p class="sub">${x.welIntro}</p>
+    </div>
+    <div>
+      <span class="label">${x.welHow}</span>
+      <div class="rules">
+        ${x.rules.map((r,i)=>`<div class="rule"><span class="n">0${i+1}</span><div><h3>${r[0]}</h3><p>${r[1]}</p></div></div>`).join('')}
+      </div>
+    </div>
+    <div class="note"><b>${x.noteTitle}</b><p>${x.noteBody}</p></div>
+    <button class="btn" data-go="routes">${x.welStart}</button>`;
 }
-function renderItin(){
-  let h = `<div class="walkcard" style="margin-bottom:10px">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6h18M12 6v4M6 10h12l-1.5 5h-9z"/><path d="M9 19h6"/></svg>
-    <span>從<b>動物園站</b>搭貓空纜車上山，約 <b>20 分</b>，抵達貓空站後開始第一站。</span></div>`;
+
+function fillRoutes(){
+  const x = t();
+  $('#pRoutes').innerHTML = `
+    <div class="stack">
+      <span class="label">${x.routeStep}</span>
+      <h2 class="h-md">${x.routeTitle}</h2>
+      <p class="sub">${x.routeSub}</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      ${x.routes.map((r,i)=>`
+        <button class="rt" data-route="${i}" aria-pressed="${i===routePick}">
+          <span class="r-top"><span class="r-name">${r[0]}</span><span class="r-meta">${r[1]}</span></span>
+          <span class="r-desc">${r[2]}</span>
+        </button>`).join('')}
+    </div>
+    <button class="btn" data-go="trail">${x.routeGo}</button>`;
+}
+
+function fillTrail(){
+  const x = t();
+  let h = `<div class="stack">
+      <span class="label">${x.trailEyebrow}</span>
+      <h2 class="h-md">${x.trailTitle}</h2>
+      <p class="sub">${x.trailSub}</p>
+    </div>
+    <div class="itin">
+      <div class="walkcard" style="margin-bottom:10px">${GONDOLA}<span>${x.gondola}</span></div>`;
   SHOPS.forEach(s=>{
-    const on = stamped.has(s.id);
-    h += legHTML(s);
-    h += `<button class="stop ${on?'done':''}" data-stop="${s.id}">
-      <span class="idx">${on?'✓':s.id}</span>
-      <span><span class="s-name">${s.name}</span><span class="s-tag">${s.spot} · ${s.tag}</span></span>
-      <span class="s-st">${on?'已蓋章':'未完成'}</span></button>`;
+    const on = stamped.has(s.id), lg = s.leg;
+    h += `<div class="leg"><span class="walk">${WALK} ${x.walkMin(lg.walk)}</span>`;
+    if (lg.bus){
+      const b = BUS[lg.bus.key];
+      h += `<button class="bus" data-bus="${s.id}"><span class="rno">${b.no}</span>${etaChip('leg'+s.id, b.headway)}</button>`;
+    }
+    h += `</div>
+      <button class="stop ${on?'done':''}" data-stop="${s.id}">
+        <span class="idx">${on?'✓':s.id}</span>
+        <span><span class="s-name">${L(s).name}</span><span class="s-tag">${L(s).spot} · ${L(s).tag}</span></span>
+        <span class="s-st">${on?x.stopDone:x.stopTodo}</span></button>`;
   });
-  $('#itin').innerHTML = h;
+  $('#pTrail').innerHTML = h + `</div>`;
   tickETA();
 }
 
-/* ─── 公車詳情 ─────────────────────────────── */
-function renderBus(shopId){
-  const s = SHOPS.find(x=>x.id===shopId), L = s.leg, b = BUS[L.bus.key];
-  const q = queueFor('det'+s.id, b.headway);
-  $('#busDetail').innerHTML = `
-    <div style="display:flex;flex-direction:column;gap:7px">
-      <span class="label">前往第 ${s.id} 站 · ${s.name}</span>
-      <h2 class="h-md">這段路可以搭公車</h2>
-      <p class="sub">走路要 ${L.walk} 分鐘，山路有坡。搭公車 ${L.bus.stops} 站就到，車程約 ${L.bus.ride} 分。</p>
-    </div>
-
-    <div class="buscard">
-      <div class="bc-head">
-        <span class="rno">${b.no}</span><span class="dir">${b.dir}</span>
-      </div>
-      <div class="bc-body">
-        <div class="bc-eta ${etaMins(q[0])<=2?'soon':''}" data-eta="det${s.id}" data-headway="${b.headway}">
-          <span class="pulse" style="width:8px;height:8px;border-radius:50%;background:currentColor;align-self:center"></span>
-          <span class="big etatext">${etaText(etaMins(q[0]))}</span>
-          <span class="unit">後進站</span>
-        </div>
-        <div class="bc-next" data-eta-next>再下一班 ${etaMins(q[1])} 分後</div>
-        <div class="bc-path">
-          <span class="dot"></span><span>${L.bus.from}</span>
-          <span class="line"><span>${L.bus.stops} 站 · ${L.bus.ride} 分</span></span>
-          <span>${L.bus.to}</span><span class="dot" style="border-color:var(--seal)"></span>
-        </div>
-      </div>
-    </div>
-
-    <div class="walkcard">${WALK_ICON}<span>不想等車？沿指南路走 <b>${L.walk} 分鐘</b>，一路都是茶園，沒有難走的路段。</span></div>
-
-    <button class="btn" data-stop-go="${s.id}">看這一站的任務</button>
-    <p class="tiny">到站時間為 Demo 模擬。正式版本接台北市公車動態資訊，實際班距以現場站牌為準。</p>`;
-  show('busview');
-}
-
-/* ─── 站點詳情 ─────────────────────────────── */
-function renderStop(id){
-  const s = SHOPS.find(x=>x.id===id); activeShop = id;
-  const on = stamped.has(id), L = s.leg;
-  let travel = `<div class="walkcard">${WALK_ICON}<span>從${L.from}步行 <b>${L.walk} 分鐘</b></span></div>`;
-  if (L.bus){
-    const b = BUS[L.bus.key];
+function fillStop(id){
+  const x = t(), s = SHOPS.find(v=>v.id===id), on = stamped.has(id), lg = s.leg, d = L(s);
+  let travel = `<div class="walkcard">${WALK}<span>${x.walkFrom(d.from, lg.walk)}</span></div>`;
+  if (lg.bus){
+    const b = BUS[lg.bus.key];
     travel = `<div class="seg">
-      <span class="label">怎麼過去</span>
-      <div class="walkcard">${WALK_ICON}<span>從${L.from}步行 <b>${L.walk} 分鐘</b>，山路有坡</span></div>
+      <span class="label">${x.howGo}</span>
+      <div class="walkcard">${WALK}<span>${x.walkFromSlope(d.from, lg.walk)}</span></div>
       <button class="bus" data-bus="${s.id}" style="align-self:flex-start;padding:6px 13px 6px 5px">
-        <span class="rno">${b.no}</span>
-        <span style="color:var(--ink-soft)">${L.bus.stops} 站 ·</span>
-        ${etaChipHTML('leg'+s.id, b.headway)}
-      </button>
-    </div>`;
+        <span class="rno">${b.no}</span><span style="color:var(--ink-soft)">${x.stopsN(lg.bus.stops)}</span>${etaChip('leg'+s.id, b.headway)}
+      </button></div>`;
   }
-  $('#stopDetail').innerHTML = `
-    <div style="display:flex;flex-direction:column;gap:8px">
-      <span class="label">第 ${s.id} 站 · ${s.spot}</span>
-      <h2 class="h-lg">${s.name}</h2>
-      <span class="tag" style="align-self:flex-start">${s.tag}</span>
+  $('#pStop').innerHTML = `
+    <div class="stack">
+      <span class="label">${x.stopNo(s.id)} · ${d.spot}</span>
+      <h2 class="h-lg">${d.name}</h2>
+      <span class="tag" style="align-self:flex-start">${d.tag}</span>
     </div>
     ${travel}
-    <div class="mission">
-      <span class="label">這一站要做的事</span>
-      <p>${s.mission}</p>
-    </div>
-    <p class="sub">${s.why}</p>
+    <div class="mission"><span class="label">${x.toDoHere}</span><p>${d.mission}</p></div>
+    <p class="sub">${d.why}</p>
     ${ on
       ? `<div style="display:flex;align-items:center;gap:13px;background:var(--seal-wash);border-radius:7px;padding:13px">
            <div style="width:54px;flex:0 0 54px">${sealSVG(s)}</div>
-           <div><span class="label">已完成</span><p class="sub" style="margin-top:2px">這一站蓋好了，往下一站出發。</p></div>
-         </div>`
-      : `<button class="btn seal" data-code="${s.id}">我完成了，輸入集章碼</button>
-         <p class="tiny">代碼要當場跟店家拿，每天都會換。</p>` }`;
-  show('stop');
+           <div><span class="label">${x.doneHere}</span><p class="sub" style="margin-top:2px">${x.doneHereSub}</p></div></div>`
+      : `<button class="btn seal" data-code="${s.id}">${x.ctaCode}</button><p class="tiny">${x.codeHint}</p>` }`;
+  tickETA();
 }
 
-/* ─── 護照 / 禮盒 ─────────────────────────── */
-function renderPassport(){
-  $('#cells').innerHTML = SHOPS.map(s=>{
-    const on = stamped.has(s.id);
-    return `<div class="cell ${on?'filled':''}">${ on ? sealSVG(s) : `<span class="ghost">${String(s.id).padStart(2,'0')}<br>${s.name.slice(0,3)}</span>` }</div>`;
-  }).join('');
-  $('#ppCount').textContent = `${stamped.size} / ${TOTAL}`;
-  $('#ppMeter').style.width = (stamped.size/TOTAL*100) + '%';
-  $('#rewardDot').hidden = !(stamped.size === TOTAL && !redeemed);
-  $('#topChip').textContent = `${stamped.size} / ${TOTAL}`;
+function fillBus(id){
+  const x = t(), s = SHOPS.find(v=>v.id===id), lg = s.leg, b = BUS[lg.bus.key];
+  const bl = L(lg.bus), q = queueFor('det'+s.id, b.headway), m = etaMins(q[0]);
+  $('#pBus').innerHTML = `
+    <div class="stack">
+      <span class="label">${x.busToStop(s.id, L(s).name)}</span>
+      <h2 class="h-md">${x.busTitle}</h2>
+      <p class="sub">${x.busSub(lg.walk, lg.bus.stops, lg.bus.ride)}</p>
+    </div>
+    <div class="buscard">
+      <div class="bc-head"><span class="rno">${b.no}</span><span class="dir">${L(b).dir}</span></div>
+      <div class="bc-body">
+        <div class="bc-eta ${m<=2?'soon':''}" data-eta="det${s.id}" data-headway="${b.headway}">
+          <span class="pulse" style="width:8px;height:8px;border-radius:50%;background:currentColor;align-self:center"></span>
+          <span class="big etatext">${etaText(m)}</span><span class="unit">${x.busArrive}</span>
+        </div>
+        <div class="bc-next" data-eta-next>${x.busNext(etaMins(q[1]))}</div>
+        <div class="bc-path">
+          <span class="dot"></span><span>${bl.from}</span>
+          <span class="line"><span>${x.busPathMeta(lg.bus.stops, lg.bus.ride)}</span></span>
+          <span>${bl.to}</span><span class="dot" style="border-color:var(--seal)"></span>
+        </div>
+      </div>
+    </div>
+    <div class="walkcard">${WALK}<span>${x.busWalkAlt(lg.walk)}</span></div>
+    <button class="btn" data-stop-go="${s.id}">${x.busSeeStop}</button>
+    <p class="tiny">${x.busDisclaim}</p>`;
+  tickETA();
 }
-function renderReward(){
-  const full = stamped.size === TOTAL;
-  $('#rewardBox').innerHTML = !full
+
+function fillCode(){
+  const x = t(), s = activeShop ? SHOPS.find(v=>v.id===activeShop) : null;
+  $('#pCode').innerHTML = `
+    <div class="stack">
+      <span class="label">${s ? `${x.stopNo(s.id)} · ${L(s).name}` : ''}</span>
+      <h2 class="h-md">${x.codeTitle}</h2>
+      <p class="sub">${x.codeSub}</p>
+    </div>
+    <input class="codein" id="codeInput" inputmode="numeric" maxlength="4" placeholder="0000" aria-label="${x.codeTitle}">
+    <p class="err" id="codeErr"></p>
+    <button class="btn seal" id="codeSubmit">${x.codeBtn}</button>
+    <p class="orline">${x.codeOr}</p>
+    <button class="btn ghost" id="codeScan">${x.codeScan}</button>`;
+  $('#codeInput').addEventListener('keydown', e => { if (e.key === 'Enter') submitCode(); });
+  $('#codeSubmit').onclick = submitCode;
+  $('#codeScan').onclick = () => {
+    const c = SHOPS.find(v=>v.id===activeShop);
+    $('#codeInput').value = c.code; $('#codeErr').textContent = '';
+    setTimeout(()=>doStamp(c.id), 300);
+  };
+}
+
+function fillDone(){
+  if (!lastStamp) return;
+  const x = t(), s = SHOPS.find(v=>v.id===lastStamp);
+  const next = SHOPS.find(v=>!stamped.has(v.id));
+  let note = x.doneAll;
+  if (next){
+    note = next.leg.bus
+      ? x.doneNextBus(L(next).name, next.leg.walk, BUS[next.leg.bus.key].no, next.leg.bus.stops)
+      : x.doneNextWalk(L(next).name, next.leg.walk);
+  }
+  $('#pDone').innerHTML = `
+    <span class="label">${x.doneEyebrow}</span>
+    <div class="stamp-stage">${sealSVG(s, 'seal-svg')}</div>
+    <h2 class="h-md">${x.doneTitle(L(s).name)}</h2>
+    <p class="sub">${note}</p>
+    <div class="meter"><i style="width:${stamped.size/TOTAL*100}%"></i></div>
+    <span class="label">${x.doneCount(stamped.size, TOTAL)}</span>
+    ${ next ? `<button class="btn ghost" data-stop-go="${next.id}">${x.doneSeeNext}</button>`
+            : `<button class="btn ghost" data-go="reward">${x.doneGetGift}</button>` }
+    <button class="btn" data-go="trail">${x.doneBack}</button>`;
+}
+
+function fillPassport(){
+  const x = t();
+  $('#pPassport').innerHTML = `
+    <div class="stack"><span class="label">My Passport</span><h2 class="h-md">${x.ppTitle}</h2></div>
+    <div class="pp">
+      <div class="pp-head"><span class="t">${x.ppRoute}</span><span class="c">${stamped.size} / ${TOTAL}</span></div>
+      <div class="cells">
+        ${SHOPS.map(s=>{
+          const on = stamped.has(s.id);
+          return `<div class="cell ${on?'filled':''}">${ on ? sealSVG(s)
+            : `<span class="ghost">${String(s.id).padStart(2,'0')}<br>${L(s).name.slice(0,3)}</span>` }</div>`;
+        }).join('')}
+      </div>
+      <div class="meter"><i style="width:${stamped.size/TOTAL*100}%"></i></div>
+    </div>
+    <p class="tiny">${x.ppNote}</p>`;
+}
+
+function fillReward(){
+  const x = t(), full = stamped.size === TOTAL;
+  if (full && !voucher) voucher = 'MK-6F-' + Math.floor(1000 + Math.random()*8999);
+  $('#pReward').innerHTML = !full
     ? `<div class="locked">
          <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
            <rect x="4.5" y="10" width="15" height="10" rx="2"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10"/></svg>
-         <h2 class="h-md">還差 ${TOTAL - stamped.size} 個章</h2>
-         <p class="sub">集滿六個章後，這裡會出現兌換碼，拿去指南青農工作室就能領走聯名小茶禮盒。</p>
-       </div>`
+         <h2 class="h-md">${x.rwLeft(TOTAL - stamped.size)}</h2>
+         <p class="sub">${x.rwLeftSub}</p></div>`
     : redeemed
-      ? `<div class="locked"><h2 class="h-md">已經領走了</h2>
-         <p class="sub">禮盒已在指南青農工作室核銷。季節限定的新路線開放時會通知你。</p></div>`
-      : `<span class="label">恭喜走完職人深度路線</span>
-         <h2 class="h-lg">青農聯名小茶禮盒</h2>
-         <p class="sub">六間茶行各一款單品茶包，附一支聯名竹製茶則，和一張印著你路線的記錄卡。</p>
+      ? `<div class="locked"><h2 class="h-md">${x.rwGotTitle}</h2><p class="sub">${x.rwGotSub}</p></div>`
+      : `<span class="label">${x.rwEyebrow}</span>
+         <h2 class="h-lg">${x.rwTitle}</h2>
+         <p class="sub">${x.rwSub}</p>
          <div class="voucher">
-           <span class="label">兌換碼 · 限用一次</span>
-           <span class="vcode">MK-6F-${Math.floor(1000+Math.random()*8999)}</span>
-           <p class="tiny">兌換點：指南青農工作室（指南宮站步行 4 分）<br>把這個畫面給店家看，由店家核銷</p>
+           <span class="label">${x.rwCodeLabel}</span>
+           <span class="vcode">${voucher}</span>
+           <p class="tiny">${x.rwWhere}</p>
          </div>
-         <button class="btn" id="redeemBtn">已經到店，請店家核銷</button>`;
-  if (full && !redeemed) $('#redeemBtn').onclick = () => { redeemed = true; renderReward(); renderPassport(); };
+         <button class="btn" id="redeemBtn">${x.rwRedeem}</button>`;
+  if (full && !redeemed) $('#redeemBtn').onclick = () => { redeemed = true; fillReward(); fillPassport(); };
+  const dot = document.querySelector('#tabs .dot');
+  if (dot) dot.hidden = !(full && !redeemed);
 }
 
-/* ─── 蓋章 ─────────────────────────────────── */
+function fillTabs(){
+  const x = t();
+  $('#tabs').innerHTML = `
+    <button class="tab" role="tab" data-tab="trail">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 19l5-14 6 10 5-8"/><circle cx="9" cy="5" r="1.6"/><circle cx="15" cy="15" r="1.6"/></svg>${x.tabTrail}</button>
+    <button class="tab" role="tab" data-tab="passport">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10.5" r="3"/><path d="M9 16.5h6"/></svg>${x.tabPass}</button>
+    <button class="tab" role="tab" data-tab="reward">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="1.5"/><path d="M3 12h18M12 8v12"/><path d="M12 8s-1-4-3.5-4S7 8 12 8s5-4 3.5-4S12 8 12 8Z"/></svg>
+      <span class="dot" hidden></span>${x.tabReward}</button>`;
+}
+
+/* ══ 導覽 ═══════════════════════════════════ */
+const TAB_OF = {trail:'trail', stop:'trail', busview:'trail', code:'trail', done:'trail', passport:'passport', reward:'reward'};
+function chrome(){
+  const x = t(), name = cur();
+  const showChrome = name !== 'welcome';
+  $('#top').classList.toggle('hide', !showChrome);
+  $('#tabs').classList.toggle('hide', !showChrome || name === 'routes');
+  $('#back').hidden = !['stop','busview','code','routes'].includes(name);
+  $('#back').setAttribute('aria-label', x.back);
+  $('#topChip').textContent = `${stamped.size} / ${TOTAL}`;
+  $('#langTop').innerHTML = langSw(true);
+  $('#deskNote').textContent = x.deskNote;
+  $('#topName').textContent =
+    (name === 'stop' || name === 'code') && activeShop ? L(SHOPS.find(s=>s.id===activeShop)).name :
+    name === 'busview' ? x.busTop : x.appName;
+  const tb = TAB_OF[name];
+  document.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === tb)));
+}
+function show(name, push=true){
+  const c = cur();
+  if (push && c && c !== name) history.push(c);
+  panes.forEach(p => p.classList.toggle('on', p.dataset.pane === name));
+  $('#view').scrollTop = 0;
+  chrome(); tickETA();
+}
+
+function setLang(l){
+  if (l === LANG) return;
+  LANG = l;
+  try { localStorage.setItem('mk-lang', l); } catch(e){}
+  document.documentElement.lang = l;
+  renderAll();
+}
+function renderAll(){
+  fillWelcome(); fillRoutes(); fillTrail(); fillPassport(); fillReward(); fillTabs(); fillCode();
+  if (activeShop) fillStop(activeShop);
+  if (busShop) fillBus(busShop);
+  if (lastStamp) fillDone();
+  chrome();
+}
+
+/* ══ 蓋章 ═══════════════════════════════════ */
 function doStamp(id){
-  const s = SHOPS.find(x=>x.id===id);
-  stamped.add(id);
-  const next = SHOPS.find(x=>!stamped.has(x.id));
-  $('#stampStage').innerHTML = sealSVG(s, 'seal-svg');
-  $('#doneTitle').textContent = `${s.name} 的章蓋好了`;
-  $('#doneNote').textContent = next
-    ? `下一站是「${next.name}」，${next.leg.bus ? `走路 ${next.leg.walk} 分，或搭 ${BUS[next.leg.bus.key].no} ${next.leg.bus.stops} 站。` : `從這裡步行 ${next.leg.walk} 分鐘。`}`
-    : '六個章全部集滿，禮盒兌換碼已經開放。';
-  $('#doneMeter').style.width = (stamped.size/TOTAL*100) + '%';
-  $('#doneCount').textContent = `${stamped.size} / ${TOTAL} 已蓋章`;
-  $('#doneNext').innerHTML = next
-    ? `<button class="btn ghost" data-stop-go="${next.id}">看下一站怎麼過去</button>`
-    : `<button class="btn ghost" data-go="reward">去領禮盒</button>`;
-  renderItin(); renderPassport(); renderReward();
+  stamped.add(id); lastStamp = id;
+  fillTrail(); fillPassport(); fillReward(); fillDone();
   history = ['trail'];
   show('done', false);
 }
+function submitCode(){
+  const x = t(), val = $('#codeInput').value.trim(), c = SHOPS.find(v=>v.id===activeShop);
+  if (val.length !== 4){ $('#codeErr').textContent = x.errLen; return; }
+  if (val === c.code){ doStamp(c.id); return; }
+  const other = SHOPS.find(v=>v.code === val);
+  $('#codeErr').textContent = other ? x.errOther(L(other).name, L(c).name) : x.errWrong;
+}
+function openCode(id){
+  activeShop = id; fillCode();
+  show('code');
+  setTimeout(()=>$('#codeInput')?.focus(), 80);
+}
 
-/* ─── 事件 ─────────────────────────────────── */
+/* ══ 事件 ═══════════════════════════════════ */
 document.addEventListener('click', e => {
+  const lg = e.target.closest('[data-lang]');
+  if (lg){ setLang(lg.dataset.lang); return; }
+
   const go = e.target.closest('[data-go]');
-  if (go){ const t = go.dataset.go; if(t==='passport') renderPassport(); if(t==='reward') renderReward(); show(t); return; }
+  if (go){ show(go.dataset.go); return; }
 
   const rt = e.target.closest('[data-route]');
-  if (rt){ document.querySelectorAll('.rt').forEach(b=>b.setAttribute('aria-pressed','false')); rt.setAttribute('aria-pressed','true'); return; }
+  if (rt){ routePick = +rt.dataset.route;
+           document.querySelectorAll('.rt').forEach(b=>b.setAttribute('aria-pressed', String(+b.dataset.route === routePick)));
+           return; }
 
-  const bus = e.target.closest('[data-bus]');
-  if (bus){ renderBus(+bus.dataset.bus); return; }
+  const bs = e.target.closest('[data-bus]');
+  if (bs){ busShop = +bs.dataset.bus; fillBus(busShop); show('busview'); return; }
 
   const sg = e.target.closest('[data-stop-go]');
-  if (sg){ renderStop(+sg.dataset.stopGo); return; }
+  if (sg){ activeShop = +sg.dataset.stopGo; fillStop(activeShop); show('stop'); return; }
 
   const st = e.target.closest('[data-stop]');
-  if (st){ renderStop(+st.dataset.stop); return; }
+  if (st){ activeShop = +st.dataset.stop; fillStop(activeShop); show('stop'); return; }
 
   const cd = e.target.closest('[data-code]');
   if (cd){ openCode(+cd.dataset.code); return; }
 
   const tab = e.target.closest('.tab');
-  if (tab){ const t = tab.dataset.tab; if(t==='passport') renderPassport(); if(t==='reward') renderReward(); history=[]; show(t, false); return; }
+  if (tab){ history = []; show(tab.dataset.tab, false); return; }
+
+  const bk = e.target.closest('#back');
+  if (bk){ show(history.pop() || 'trail', false); return; }
 });
 
-function openCode(id){
-  activeShop = id;
-  $('#codeShop').textContent = `第 ${id} 站 · ${SHOPS.find(s=>s.id===id).name}`;
-  $('#codeInput').value = ''; $('#codeErr').textContent = '';
-  show('code');
-  setTimeout(()=>$('#codeInput').focus(), 80);
-}
-function submitCode(){
-  const val = $('#codeInput').value.trim();
-  const cur = SHOPS.find(x=>x.id===activeShop);
-  if (val.length !== 4){ $('#codeErr').textContent = '集章碼是四位數字，再確認一次。'; return; }
-  if (val === cur.code){ doStamp(cur.id); return; }
-  const other = SHOPS.find(x=>x.code === val);
-  $('#codeErr').textContent = other
-    ? `這是「${other.name}」的代碼，不能用在${cur.name}。請跟本店的老闆拿今天的代碼。`
-    : '代碼不對。集章碼每天都會換，請跟店家確認今天的四位數字。';
-}
-$('#codeSubmit').onclick = submitCode;
-$('#codeInput').addEventListener('keydown', e => { if (e.key === 'Enter') submitCode(); });
-$('#codeScan').onclick = () => { const c = SHOPS.find(x=>x.id===activeShop); $('#codeInput').value = c.code; $('#codeErr').textContent=''; setTimeout(()=>doStamp(c.id), 300); };
-
-/* ─── 桌面版背景紋 ─────────────────────────── */
+/* ══ 桌面背景紋 ═════════════════════════════ */
 (function(){
   const cv = $('#guilloche');
   function paint(){
@@ -840,10 +857,10 @@ $('#codeScan').onclick = () => { const c = SHOPS.find(x=>x.id===activeShop); $('
     for (let ring=0; ring<5; ring++){
       const R = base*(1-ring*0.14), r = R*(0.21+ring*0.035), d = R*(0.52-ring*0.05), k = (R-r)/r;
       g.globalAlpha = 0.26 - ring*0.032; g.beginPath();
-      for (let t=0; t<=Math.PI*22; t+=0.012){
-        const x = cx + (R-r)*Math.cos(t) + d*Math.cos(k*t);
-        const y = cy + (R-r)*Math.sin(t) - d*Math.sin(k*t);
-        t===0 ? g.moveTo(x,y) : g.lineTo(x,y);
+      for (let s=0; s<=Math.PI*22; s+=0.012){
+        const x = cx + (R-r)*Math.cos(s) + d*Math.cos(k*s);
+        const y = cy + (R-r)*Math.sin(s) - d*Math.sin(k*s);
+        s===0 ? g.moveTo(x,y) : g.lineTo(x,y);
       }
       g.stroke();
     }
@@ -854,6 +871,8 @@ $('#codeScan').onclick = () => { const c = SHOPS.find(x=>x.id===activeShop); $('
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', paint);
 })();
 
-/* ─── 啟動 ─────────────────────────────────── */
-renderItin(); renderPassport(); renderReward(); show('welcome', false);
+/* ══ 啟動 ═══════════════════════════════════ */
+document.documentElement.lang = LANG;
+renderAll();
+show('welcome', false);
 </script>

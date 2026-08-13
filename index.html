@@ -244,6 +244,11 @@ button{font:inherit; color:inherit}
 .qcard{border:1px solid var(--rule); border-radius:8px; background:var(--paper); overflow:hidden}
 .qcard .qc-art{aspect-ratio:16/7; background:var(--tea-deep); display:grid; place-items:center}
 .qcard .qc-art svg{width:56px; height:56px; color:var(--gold)}
+/* 有照片的關卡：照片取代插圖，兩張時併排 */
+.qcard .qc-art.photo{aspect-ratio:3/2; grid-auto-flow:column; grid-auto-columns:1fr; gap:2px; background:var(--surface-2)}
+.qcard .qc-art.photo img{width:100%; height:100%; object-fit:cover; display:block}
+.qcard .qc-cap{display:flex; gap:10px; padding:8px 15px 0; flex-wrap:wrap}
+.qcard .qc-cap span{font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; color:var(--mist); line-height:1.6}
 .qcard .qc-body{padding:15px; display:flex; flex-direction:column; gap:9px}
 .qcard .qc-body h3{font-family:var(--serif); font-size:1.1rem}
 .qcard .qc-body p{font-size:.87rem; color:var(--ink-soft); line-height:1.9}
@@ -384,16 +389,16 @@ const T = {
 
     qBadge:"店內闖關",
     qHeroTitle:"這一站有店內闖關",
-    qHeroBody:"坐下來就可以開始。掃桌上菜單的 QR，跟著店裡藏的四個 QR 走一圈，邊玩邊把這裡的茶認識一遍。四關走完就算完成這一站，護照會自動蓋章，不用另外跟老闆要代碼。",
+    qHeroBody:"坐下來就可以開始。掃桌上菜單的 QR，跟著店裡藏的四個 QR 走一圈，邊玩邊把這裡的茶認識一遍。四關走完就算完成這一站，護照會自動蓋章。",
     qOpen:"開始店內闖關", qResume:"繼續闖關", qReview:"回顧闖關內容",
     qTitle:"店內闖關", qEyebrow:"闖關 · 4 關",
-    qOverviewSub:"每一關的 QR 藏在店裡不同的地方，得靠自己找。上一關的內容和動作就是線索。中途離開也沒關係，進度會留著。",
+    qOverviewSub:"每一關的 QR 藏在店裡不同的地方。上一關的內容和動作就是線索。中途離開也沒關係，進度會留著。",
     qStepsLabel:"關卡", qNow:"還沒找到", qLocked:"未解鎖", qDoneMark:"已完成",
     qProgress:(a,b)=>`${a} / ${b} 關`,
     qStepNo:n=>`第 ${n} 關`,
     qWhere:"去找這一關的 QR", qClue:"線索",
     qNowHint:"照著線索在店裡找找看，找到就掃描解鎖。",
-    qNextHint:"做完上面那件事，你就會遇到下一個 QR —— 藏在哪要自己找。",
+    qNextHint:"找一找下一關的QRCODE在哪呢?",
     qScanBtn:"掃描這個 QR",
     qManual:"相機打不開？輸入 QR 下面那四位數字也可以。",
     qCodeBtn:"解鎖這一關",
@@ -588,42 +593,45 @@ const QUESTS = {
       { code:"1101", art:"pot",
         zh:{ find:"桌上那本菜單，最後一頁。",
              title:"先學會泡好這一壺",
-             body:"這裡用的是自家的鐵觀音，一壺放三公克，水溫抓九十五度。第一泡四十五秒就要倒出來，倒乾淨，別讓茶葉泡在水裡 —— 第二泡才會甜。",
-             task:"照著上面的秒數泡出第一泡，喝一口，再把茶具收一收。" },
+             body:"這裡用的是自家的鐵觀音，一壺放三公克，水溫抓九十五度。第一泡四十五秒就要倒出來，倒乾淨，別讓茶葉泡在水裡。",
+             task:"照著上面的秒數泡出第一泡，品嘗甘甜的茶" },
         ja:{ find:"卓上のメニュー、最後のページ。",
              title:"まずはこの一壺を上手に淹れる",
-             body:"使うのは自家製の鉄観音。一壺に3グラム、湯温は95度。一煎目は45秒でしっかり注ぎ切ります。茶葉を湯に浸けたままにしないこと ── そうすると二煎目が甘くなります。",
-             task:"上の秒数どおりに一煎目を淹れ、ひと口飲んでから、茶器を片づけてみてください。" } },
+             body:"使うのは自家製の鉄観音。一壺に3グラム、湯温は95度。一煎目は45秒でしっかり注ぎ切ります。茶葉を湯に浸けたままにしないでください。",
+             task:"上の秒数どおりに一煎目を淹れて、甘みのあるお茶を味わってみてください。" } },
 
       { code:"2202", art:"leaf",
+        img:[{src:"img/tea-farm.jpg", zh:"晨曦茶園的茶樹", ja:"晨曦茶園の茶樹"}],
         zh:{ find:"泡完這一泡，桌上的東西一件一件拿起來看看。",
              title:"這壺茶長在哪裡",
              body:"店後面那片就是我們家的老欉，海拔三百公尺，坡向東南。一年只採春冬兩季，夏茶留著養樹。茶樹旁邊會刻意留一些草，草根抓得住水，蟲也不會全部往茶樹上跑。",
-             task:"走到門口那排盆栽，挑一株你覺得是雜草的，把它拔起來看看。" },
+             task:"老闆太忙了，沒有時間除草，可以請你幫忙嗎?" },
         ja:{ find:"一煎目を飲みおえたら、卓上のものをひとつずつ持ち上げてみて。",
              title:"このお茶が育つ場所",
              body:"店の裏手にあるのが、うちの古い茶樹。標高300メートル、南東向きの斜面です。春と冬だけ摘み、夏の芽は樹を育てるために残します。茶樹のまわりにはわざと草を残します。草の根が水を抱え、虫も茶樹だけに集まらなくなるからです。",
-             task:"入口の鉢植えの列へ。雑草だと思うものを一株えらんで抜いてみてください。" } },
+             task:"店主は忙しくて草取りができません。手伝ってもらえませんか？" } },
 
       { code:"3303", art:"fruit",
+        img:[{src:"img/outdoor-view.jpg", zh:"晨曦茶坊的戶外座位區", ja:"晨曦茶坊の屋外席"},
+             {src:"img/passion-fruit.jpg", zh:"棚架上的百香果", ja:"棚のパッションフルーツ"}],
         zh:{ find:"拔對那一株，你就會看到它。",
              title:"走到外面看一次",
-             body:"戶外座位那一排望出去，前面低的是茶園，後面高的是相思樹林。棚架上那些垂下來的是百香果，八月會轉紫；旁邊那叢開橘黃色小花的，葉子搓一搓聞聞看 —— 那是芳香萬壽菊，有股水蜜桃味，冬天會拿來跟茶一起烘。",
-             task:"到戶外座位區，找到那叢有水蜜桃味的花，搓一片葉子聞聞看。" },
+             body:"戶外座位",
+             task:"這是哪裡?為什麼有百香果的味道?" },
         ja:{ find:"正しい一株を抜けたなら、もう見えているはずです。",
              title:"いちど外へ出てみる",
-             body:"屋外席から見わたすと、手前の低いところが茶畑、奥の高いところが相思樹の林です。棚から垂れているのはパッションフルーツで、8月に紫に変わります。そのとなりのオレンジ色の小花 ── 葉をこすって嗅いでみてください。芳香マリーゴールドです。桃のような香りがして、冬にはお茶と一緒に焙じます。",
-             task:"屋外席へ出て、桃のような香りのする花を見つけ、葉を一枚こすってみましょう。" } },
+             body:"屋外の席",
+             task:"ここはどこでしょう？なぜパッションフルーツの香りがするのでしょう？" } },
 
-      { code:"4404", art:"seal", word:"一心二葉，山風慢焙", wordJa:"一心二葉、山風でゆっくり焙じる",
+      { code:"4404", art:"seal", word:"阿如老闆", wordJa:"阿如（アールー）店主",
         zh:{ find:"聞到那股水蜜桃味了嗎？站在原地，低頭看看四周。",
              title:"茶園主人想跟你說的",
-             body:"「我阿公種茶，我爸做茶，我回來做的是讓人願意上山喝一杯。機器可以焙得很快，但山風吹過的茶葉，味道就是不一樣 —— 這是我們家唯一一句不肯改的話。」",
-             task:"把下面這句關鍵字念給老闆聽。" },
+             body:"「放棄髮型設計師、青年茶農聯誼會」",
+             task:"這是誰?" },
         ja:{ find:"桃の香りを見つけましたか。その場で、足もとをぐるりと見てみてください。",
              title:"茶園の主人が伝えたいこと",
-             body:"「祖父が茶を植え、父が茶をつくり、私は人に山まで来て一杯飲んでもらうことをしています。機械なら早く焙じられますが、山の風にあたった茶葉は味が違う ── これだけは、うちが変えないことばです。」",
-             task:"下の合言葉を店主に伝えてください。" } }
+             body:"「ヘアデザイナーの道をやめて、青年茶農の集まりへ」",
+             task:"これは誰でしょう？" } }
     ]
   }
 };
@@ -955,9 +963,13 @@ function fillQCard(i){
   const q = questOf(questShop); if (!q) return;
   const x = t(), st = q.steps[i], d = L(st), last = i === q.steps.length - 1;
   const shopDone = stamped.has(q.shop);
+  const art = st.img
+    ? `<div class="qc-art photo">${st.img.map(p=>`<img src="${p.src}" alt="${L(p)}" loading="lazy">`).join('')}</div>
+       <div class="qc-cap">${st.img.map(p=>`<span>${L(p)}</span>`).join('')}</div>`
+    : `<div class="qc-art">${QART[st.art] || QART.leaf}</div>`;
   $('#pQCard').innerHTML = `
     <div class="qcard">
-      <div class="qc-art">${QART[st.art] || QART.leaf}</div>
+      ${art}
       <div class="qc-body">
         <span class="label">${x.qStepNo(i+1)}</span>
         <h3>${d.title}</h3>

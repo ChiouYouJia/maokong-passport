@@ -411,6 +411,7 @@ const T = {
     qFinEyebrow:"闖關完成", qFinTitle:"你走完這間店的四關了",
     qWordLabel:"通關關鍵字",
     qFinSub:"把這句話念給老闆聽，他會接著跟你聊自家茶園的事。這一站的章也蓋好了。",
+    qFinSubNoWord:"找到她，跟她說你把四關都走完了 —— 她會接著跟你聊自家茶園的事。這一站的章也蓋好了。",
     qQuitToCode:"想直接跟店家拿集章碼",
     qDemoNote:"Demo 版用輸入代碼模擬掃描。正式版直接開相機讀店內的 QR，代碼由店家後台產生。"
   },
@@ -513,6 +514,7 @@ const T = {
     qFinEyebrow:"クエスト達成", qFinTitle:"この店の4問をすべて解きました",
     qWordLabel:"合言葉",
     qFinSub:"この合言葉を店主に伝えると、自分の茶畑の話をしてくれます。この店のスタンプも押されました。",
+    qFinSubNoWord:"その人を見つけて、4問すべて解いたと伝えてみてください。茶畑の話をしてくれます。この店のスタンプも押されました。",
     qQuitToCode:"店主から番号をもらって進める",
     qDemoNote:"デモ版では番号入力で読み取りを再現しています。正式版はカメラで店内のQRを直接読み取り、番号は店舗管理画面で生成されます。"
   }
@@ -591,7 +593,7 @@ const QUESTS = {
     shop:3,
     steps:[
       { code:"1101", art:"pot",
-        zh:{ find:"桌上那本菜單，最後一頁。",
+        zh:{ find:"菜單上的QRcode。",
              title:"先學會泡好這一壺",
              body:"這裡用的是自家的鐵觀音，一壺放三公克，水溫抓九十五度。第一泡四十五秒就要倒出來，倒乾淨，別讓茶葉泡在水裡。",
              task:"照著上面的秒數泡出第一泡，品嘗甘甜的茶" },
@@ -615,23 +617,23 @@ const QUESTS = {
         img:[{src:"img/outdoor-view.jpg", zh:"晨曦茶坊的戶外座位區", ja:"晨曦茶坊の屋外席"},
              {src:"img/passion-fruit.jpg", zh:"棚架上的百香果", ja:"棚のパッションフルーツ"}],
         zh:{ find:"拔對那一株，你就會看到它。",
-             title:"走到外面看一次",
-             body:"戶外座位",
-             task:"這是哪裡?為什麼有百香果的味道?" },
+             title:"走到其他區域看一看",
+             body:"",
+             task:"圖片上的風景是哪裡拍的?為什麼有百香果的味道?" },
         ja:{ find:"正しい一株を抜けたなら、もう見えているはずです。",
-             title:"いちど外へ出てみる",
-             body:"屋外の席",
-             task:"ここはどこでしょう？なぜパッションフルーツの香りがするのでしょう？" } },
+             title:"ほかの場所も見てみよう",
+             body:"",
+             task:"写真の風景はどこで撮ったものでしょう？なぜパッションフルーツの香りがするのでしょう？" } },
 
-      { code:"4404", art:"seal", word:"阿如老闆", wordJa:"阿如（アールー）店主",
-        zh:{ find:"聞到那股水蜜桃味了嗎？站在原地，低頭看看四周。",
-             title:"茶園主人想跟你說的",
-             body:"「放棄髮型設計師、青年茶農聯誼會」",
-             task:"這是誰?" },
-        ja:{ find:"桃の香りを見つけましたか。その場で、足もとをぐるりと見てみてください。",
-             title:"茶園の主人が伝えたいこと",
-             body:"「ヘアデザイナーの道をやめて、青年茶農の集まりへ」",
-             task:"これは誰でしょう？" } }
+      { code:"4404", art:"seal", 
+        zh:{ find:"摸一摸植物?",
+             title:"",
+             body:"「放棄髮型設計師、青年茶農」",
+             task:"這是誰?請你找到她" },
+        ja:{ find:"植物にふれてみて？",
+             title:"",
+             body:"「ヘアデザイナーをやめて、青年茶農へ」",
+             task:"これは誰でしょう？その人を探してみてください。" } }
     ]
   }
 };
@@ -963,6 +965,7 @@ function fillQCard(i){
   const q = questOf(questShop); if (!q) return;
   const x = t(), st = q.steps[i], d = L(st), last = i === q.steps.length - 1;
   const shopDone = stamped.has(q.shop);
+  const word = (LANG === 'ja' ? st.wordJa : st.word) || '';   /* 沒設關鍵字就不顯示那一塊 */
   const art = st.img
     ? `<div class="qc-art photo">${st.img.map(p=>`<img src="${p.src}" alt="${L(p)}" loading="lazy">`).join('')}</div>
        <div class="qc-cap">${st.img.map(p=>`<span>${L(p)}</span>`).join('')}</div>`
@@ -972,17 +975,17 @@ function fillQCard(i){
       ${art}
       <div class="qc-body">
         <span class="label">${x.qStepNo(i+1)}</span>
-        <h3>${d.title}</h3>
-        <p>${d.body}</p>
+        ${ d.title ? `<h3>${d.title}</h3>` : '' }
+        ${ d.body ? `<p>${d.body}</p>` : '' }
       </div>
     </div>
     <div class="qtask"><span class="label">${x.qTask}</span><p>${d.task}</p></div>
     ${ last
-      ? `<div class="qword">
-           <span class="label">${x.qWordLabel}</span>
-           <span class="w">${LANG === 'ja' ? st.wordJa : st.word}</span>
-         </div>
-         <p class="sub">${x.qFinSub}</p>
+      ? `${ word ? `<div class="qword">
+             <span class="label">${x.qWordLabel}</span>
+             <span class="w">${word}</span>
+           </div>` : '' }
+         <p class="sub">${word ? x.qFinSub : x.qFinSubNoWord}</p>
          ${ shopDone
             ? `<button class="btn" data-go="trail">${x.doneBack}</button>`
             : `<button class="btn seal" data-qfinish="${q.shop}">${x.qFinishBtn}</button>` }`

@@ -206,6 +206,59 @@ button{font:inherit; color:inherit}
 .voucher .vcode{font-family:var(--mono); font-size:1.15rem; letter-spacing:.22em; color:var(--gold)}
 .locked{display:flex; flex-direction:column; gap:10px; align-items:center; text-align:center; padding:34px 10px; color:var(--ink-faint)}
 
+/* ══ 店內闖關 ══ */
+.qbadge{display:inline-flex; align-items:center; gap:5px; font-family:var(--mono); font-size:9.5px; letter-spacing:.12em;
+        text-transform:uppercase; color:var(--seal); border:1px solid var(--seal); border-radius:3px; padding:2px 7px; white-space:nowrap}
+.qbadge svg{width:11px; height:11px; flex:0 0 11px}
+.stop .s-tag .qbadge{margin-left:6px; vertical-align:1px}
+
+.qhero{border:1px solid var(--seal-wash); background:var(--seal-wash); border-radius:8px; padding:15px;
+       display:flex; flex-direction:column; gap:9px}
+.qhero .qh-top{display:flex; align-items:center; gap:9px}
+.qhero .qh-top svg{width:19px; height:19px; color:var(--seal); flex:0 0 19px}
+.qhero h3{font-family:var(--serif); font-size:1.02rem; flex:1}
+.qhero p{font-size:.83rem; color:var(--ink-soft); line-height:1.8}
+
+.qsteps{display:flex; flex-direction:column}
+.qstep{display:grid; grid-template-columns:26px 1fr; gap:0 12px; padding:12px 0; border-bottom:1px solid var(--rule); align-items:start}
+.qstep:first-child{border-top:1px solid var(--rule)}
+.qstep .qn{width:24px; height:24px; border-radius:50%; border:1px solid var(--rule); display:grid; place-items:center;
+           font-family:var(--mono); font-size:10.5px; color:var(--ink-faint)}
+.qstep.done .qn{background:var(--seal); border-color:var(--seal); color:var(--on-seal)}
+.qstep.now .qn{border-color:var(--seal); color:var(--seal); border-width:1.5px}
+.qstep h4{font-family:var(--serif); font-size:.94rem; font-weight:600; margin-bottom:2px}
+.qstep.locked h4,.qstep.locked p{color:var(--ink-faint)}
+.qstep p{font-size:.79rem; color:var(--ink-soft); line-height:1.7}
+.qstep .qnow{font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; color:var(--seal)}
+
+.qscan{border:1px dashed var(--rule); border-radius:8px; background:var(--paper); padding:22px 16px;
+       display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center}
+.qscan .frame{width:112px; height:112px; position:relative; display:grid; place-items:center; color:var(--mist)}
+.qscan .frame svg{width:52px; height:52px}
+.qscan .frame::before,.qscan .frame::after{content:""; position:absolute; width:26px; height:26px; border:2px solid var(--seal); opacity:.75}
+.qscan .frame::before{top:0; left:0; border-right:0; border-bottom:0; border-radius:5px 0 0 0}
+.qscan .frame::after{bottom:0; right:0; border-left:0; border-top:0; border-radius:0 0 5px 0}
+.qscan .where{font-size:.86rem; color:var(--ink); line-height:1.75}
+.qscan .where b{color:var(--seal)}
+
+.qcard{border:1px solid var(--rule); border-radius:8px; background:var(--paper); overflow:hidden}
+.qcard .qc-art{aspect-ratio:16/7; background:var(--tea-deep); display:grid; place-items:center}
+.qcard .qc-art svg{width:56px; height:56px; color:var(--gold)}
+.qcard .qc-body{padding:15px; display:flex; flex-direction:column; gap:9px}
+.qcard .qc-body h3{font-family:var(--serif); font-size:1.1rem}
+.qcard .qc-body p{font-size:.87rem; color:var(--ink-soft); line-height:1.9}
+.qcard .qc-key{border-top:1px solid var(--rule); padding-top:11px; display:flex; flex-direction:column; gap:4px}
+.qcard .qc-key b{font-size:.85rem; color:var(--ink)}
+
+.qtask{border-left:2px solid var(--gold); padding:3px 0 3px 13px; display:flex; flex-direction:column; gap:5px}
+.qtask p{font-size:.87rem; line-height:1.85}
+.qword{border:1px solid var(--gold); background:var(--gold-wash); border-radius:7px; padding:15px;
+       display:flex; flex-direction:column; gap:6px; align-items:center; text-align:center}
+.qword .w{font-family:var(--serif); font-size:1.35rem; color:var(--gold); letter-spacing:.14em}
+.qprog{display:flex; align-items:center; gap:8px}
+.qprog .meter{flex:1}
+.qprog .n{font-family:var(--mono); font-size:10.5px; color:var(--seal); font-variant-numeric:tabular-nums}
+
 .tabs{flex:0 0 auto; display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--rule);
       background:var(--paper); padding-bottom:env(safe-area-inset-bottom)}
 .tabs.hide{display:none}
@@ -236,6 +289,9 @@ button{font:inherit; color:inherit}
       <section class="pane"    data-pane="stop"     id="pStop"></section>
       <section class="pane"    data-pane="busview"  id="pBus"></section>
       <section class="pane"    data-pane="code"     id="pCode"></section>
+      <section class="pane"    data-pane="quest"    id="pQuest"></section>
+      <section class="pane"    data-pane="qscan"    id="pQScan"></section>
+      <section class="pane"    data-pane="qcard"    id="pQCard"></section>
       <section class="pane"    data-pane="done"     id="pDone"></section>
       <section class="pane"    data-pane="passport" id="pPassport"></section>
       <section class="pane"    data-pane="reward"   id="pReward"></section>
@@ -324,7 +380,32 @@ const T = {
     rwSub:"六間茶行各一款單品茶包，附一支聯名竹製茶則，和一張印著你路線的記錄卡。",
     rwCodeLabel:"兌換碼 · 限用一次",
     rwWhere:"兌換點：指南青農工作室（指南宮站步行 4 分）<br>把這個畫面給店家看，由店家核銷",
-    rwRedeem:"已經到店，請店家核銷"
+    rwRedeem:"已經到店，請店家核銷",
+
+    qBadge:"店內闖關",
+    qHeroTitle:"這一站有店內闖關",
+    qHeroBody:"坐下來就可以開始。掃桌上菜單的 QR，跟著店裡藏的四個 QR 走一圈，邊玩邊把這裡的茶認識一遍。四關走完就算完成這一站，護照會自動蓋章，不用另外跟老闆要代碼。",
+    qOpen:"開始店內闖關", qResume:"繼續闖關", qReview:"回顧闖關內容",
+    qTitle:"店內闖關", qEyebrow:"闖關 · 4 關",
+    qOverviewSub:"每一關的 QR 藏在店裡不同的地方，過關後會告訴你下一個貼在哪。中途離開也沒關係，進度會留著。",
+    qStepsLabel:"關卡", qNow:"進行中", qLocked:"未解鎖", qDoneMark:"已完成",
+    qProgress:(a,b)=>`${a} / ${b} 關`,
+    qStepNo:n=>`第 ${n} 關`,
+    qWhere:"這一關的 QR 在哪",
+    qScanBtn:"掃描這個 QR",
+    qManual:"相機打不開？輸入 QR 下面那四位數字也可以。",
+    qCodeBtn:"解鎖這一關",
+    qErrLen:"是四位數字，再確認一次。",
+    qErrOrder:n=>`這是第 ${n} 關的 QR，先把目前這一關完成再回來掃。`,
+    qErrWrong:"這不是這一關的 QR，再照提示找一次位置。",
+    qTask:"動手做做看",
+    qNext:"下一個 QR 在哪", qNextBtn:"找到了，掃描下一關",
+    qFinishBtn:"完成闖關，蓋這一站的章",
+    qFinEyebrow:"闖關完成", qFinTitle:"你走完這間店的四關了",
+    qWordLabel:"通關關鍵字",
+    qFinSub:"把這句話念給老闆聽，他會接著跟你聊自家茶園的事。這一站的章也蓋好了。",
+    qQuitToCode:"想直接跟店家拿集章碼",
+    qDemoNote:"Demo 版用輸入代碼模擬掃描。正式版直接開相機讀店內的 QR，代碼由店家後台產生。"
   },
 
   ja:{
@@ -399,7 +480,32 @@ const T = {
     rwSub:"6軒の茶館から1種類ずつのティーバッグ、コラボの竹製茶則、そしてあなたのルートが印刷された記録カード入り。",
     rwCodeLabel:"引換コード・1回限り",
     rwWhere:"引換場所：指南青農工房（指南宮駅から徒歩4分）<br>この画面を店主にお見せください",
-    rwRedeem:"お店で見せて交換する"
+    rwRedeem:"お店で見せて交換する",
+
+    qBadge:"店内クエスト",
+    qHeroTitle:"この店には店内クエストがあります",
+    qHeroBody:"席についたらすぐ始められます。卓上メニューのQRを読み取り、店内に隠された4つのQRをたどると、遊びながらこの店のお茶がひと通りわかります。4つ終えればこの店は達成。パスポートに自動でスタンプが押され、番号を聞く必要はありません。",
+    qOpen:"店内クエストを始める", qResume:"クエストを続ける", qReview:"クエストの内容を見返す",
+    qTitle:"店内クエスト", qEyebrow:"クエスト・全4問",
+    qOverviewSub:"QRは店内のあちこちに隠れています。1つ解くと次の場所を教えてくれます。途中でやめても進み具合は残ります。",
+    qStepsLabel:"ステップ", qNow:"進行中", qLocked:"未解放", qDoneMark:"クリア",
+    qProgress:(a,b)=>`${b} 問中 ${a} 問`,
+    qStepNo:n=>`第 ${n} 問`,
+    qWhere:"このQRのありか",
+    qScanBtn:"このQRを読み取る",
+    qManual:"カメラが使えないときは、QRの下の4桁を入力してください。",
+    qCodeBtn:"このステップを解く",
+    qErrLen:"4桁の数字です。もう一度ご確認ください。",
+    qErrOrder:n=>`これは第 ${n} 問のQRです。今のステップを終えてから読み取ってください。`,
+    qErrWrong:"このステップのQRではありません。ヒントの場所をもう一度探してみてください。",
+    qTask:"やってみよう",
+    qNext:"次のQRのありか", qNextBtn:"見つけた、次を読み取る",
+    qFinishBtn:"クエスト達成、スタンプを押す",
+    qFinEyebrow:"クエスト達成", qFinTitle:"この店の4問をすべて解きました",
+    qWordLabel:"合言葉",
+    qFinSub:"この合言葉を店主に伝えると、自分の茶畑の話をしてくれます。この店のスタンプも押されました。",
+    qQuitToCode:"店主から番号をもらって進める",
+    qDemoNote:"デモ版では番号入力で読み取りを再現しています。正式版はカメラで店内のQRを直接読み取り、番号は店舗管理画面で生成されます。"
   }
 };
 const t = () => T[LANG];
@@ -430,11 +536,12 @@ const SHOPS = [
        why:"炒り鍋が店の真ん中にあります。このルートで唯一、手を動かせる店です。"}},
 
   {id:3, code:"4460", seal:"三分", leg:{walk:6},
+   quest:"tea3",
    zh:{name:"三分埔茶園", spot:"茶園步道旁", tag:"產地", from:"石階製茶所",
-       mission:"走一段茶園步道，拍下一株正在採收的茶樹，回店裡出示照片。",
+       mission:"坐下來掃菜單上的 QR，跟著店裡藏的四個 QR 走一圈，最後拿到茶園主人的通關關鍵字。",
        why:"先看到茶長在哪裡，後面幾站聽老闆講話才有畫面。"},
    ja:{name:"三分埔茶園", spot:"茶畑の遊歩道沿い", tag:"産地", from:"石段製茶所",
-       mission:"茶畑の遊歩道を少し歩き、収穫中の茶樹を1枚撮って店で見せてください。",
+       mission:"席についたらメニューのQRを読み取り、店内に隠れた4つのQRをたどって、最後に茶農主人の合言葉を手に入れましょう。",
        why:"茶がどこで育つかを先に見ておくと、このあとの話が絵で浮かびます。"}},
 
   {id:4, code:"9137", seal:"樟湖",
@@ -466,9 +573,71 @@ const SHOPS = [
 const TOTAL = SHOPS.length;
 const L = o => o[LANG];
 
+/* ══ 店內闖關（依店家設計的關卡腳本）══════════
+   一間店 = 一條闖關線，每一關是一個貼在店裡的 QR。
+   掃到 QR → 看一段內容 → 做一件小事 → 得到下一個 QR 的位置。
+   四關走完＝完成這一站，直接蓋章。                       */
+const QUESTS = {
+  tea3: {
+    shop:3,
+    steps:[
+      { code:"1101", art:"pot",
+        zh:{ where:"桌上那本菜單，翻到最後一頁右下角。",
+             title:"先學會泡好這一壺",
+             body:"這裡用的是自家的鐵觀音，一壺放三公克，水溫抓九十五度。第一泡四十五秒就要倒出來，倒乾淨，別讓茶葉泡在水裡 —— 第二泡才會甜。",
+             task:"照著上面的秒數泡出第一泡，喝一口再繼續。",
+             next:"喝完把茶壺整個拿起來 —— 下一個 QR 就貼在壺底。" },
+        ja:{ where:"卓上のメニュー、最後のページの右下。",
+             title:"まずはこの一壺を上手に淹れる",
+             body:"使うのは自家製の鉄観音。一壺に3グラム、湯温は95度。一煎目は45秒でしっかり注ぎ切ります。茶葉を湯に浸けたままにしないこと ── そうすると二煎目が甘くなります。",
+             task:"上の秒数どおりに一煎目を淹れて、ひと口飲んでから次へ。",
+             next:"飲み終わったら茶壺を持ち上げてみてください。次のQRは壺の底にあります。" } },
+
+      { code:"2202", art:"leaf",
+        zh:{ where:"茶壺的壺底。",
+             title:"這壺茶長在哪裡",
+             body:"店後面那片是三分埔的老欉，海拔三百公尺，坡向東南。一年只採春冬兩季，夏茶留著養樹。茶樹旁邊會刻意留一些草，草根抓得住水，蟲也不會全部往茶樹上跑。",
+             task:"走到門口那排盆栽，挑一株你覺得是雜草的，把它拔起來看看。",
+             next:"其中一叢草是假的 —— 拔起來，QR 就壓在盆底。" },
+        ja:{ where:"茶壺の底。",
+             title:"このお茶が育つ場所",
+             body:"店の裏手が三分埔の古い茶樹。標高300メートル、南東向きの斜面です。春と冬だけ摘み、夏の芽は樹を育てるために残します。茶樹のまわりにはわざと草を残します。草の根が水を抱え、虫も茶樹だけに集まらなくなるからです。",
+             task:"入口の鉢植えの列へ。雑草だと思うものを一株えらんで抜いてみてください。",
+             next:"そのうち一株はニセモノの雑草です。抜くと、鉢の底にQRが貼ってあります。" } },
+
+      { code:"3303", art:"fruit",
+        zh:{ where:"假雜草的盆底。",
+             title:"走到外面看一次",
+             body:"戶外座位那一排望出去，前面低的是茶園，後面高的是相思樹林。棚架上那些垂下來的是百香果，八月會轉紫；旁邊那叢開橘黃色小花的，葉子搓一搓聞聞看 —— 那是芳香萬壽菊，有股水蜜桃味，冬天會拿來跟茶一起烘。",
+             task:"到戶外座位區，找到那叢芳香萬壽菊，搓一片葉子聞聞看。",
+             next:"芳香萬壽菊旁邊的地上有一塊小木牌，最後一個 QR 在木牌上。" },
+        ja:{ where:"ニセ雑草の鉢の底。",
+             title:"いちど外へ出てみる",
+             body:"屋外席から見わたすと、手前の低いところが茶畑、奥の高いところが相思樹の林です。棚から垂れているのはパッションフルーツで、8月に紫に変わります。そのとなりのオレンジ色の小花 ── 葉をこすって嗅いでみてください。芳香マリーゴールドです。桃のような香りがして、冬にはお茶と一緒に焙じます。",
+             task:"屋外席へ出て芳香マリーゴールドを見つけ、葉を一枚こすって香りをかいでみましょう。",
+             next:"芳香マリーゴールドのそばの地面に小さな木札があります。最後のQRはその木札に。" } },
+
+      { code:"4404", art:"seal", word:"一心二葉，山風慢焙", wordJa:"一心二葉、山風でゆっくり焙じる",
+        zh:{ where:"芳香萬壽菊旁邊地上的木牌。",
+             title:"茶園主人想跟你說的",
+             body:"「我阿公種茶，我爸做茶，我回來做的是讓人願意上山喝一杯。機器可以焙得很快，但山風吹過的茶葉，味道就是不一樣 —— 這是我們家唯一一句不肯改的話。」",
+             task:"把下面這句關鍵字念給老闆聽。",
+             next:"" },
+        ja:{ where:"芳香マリーゴールドのそばの地面にある木札。",
+             title:"茶園の主人が伝えたいこと",
+             body:"「祖父が茶を植え、父が茶をつくり、私は人に山まで来て一杯飲んでもらうことをしています。機械なら早く焙じられますが、山の風にあたった茶葉は味が違う ── これだけは、うちが変えないことばです。」",
+             task:"下の合言葉を店主に伝えてください。",
+             next:"" } }
+    ]
+  }
+};
+const questOf = shopId => { const s = SHOPS.find(v=>v.id===shopId); return s?.quest ? QUESTS[s.quest] : null; };
+
 /* ══ 狀態 ═══════════════════════════════════ */
 let stamped = new Set(), activeShop = null, busShop = null, lastStamp = null;
 let redeemed = false, history = [], voucher = null, routePick = 1;
+/* 闖關：questShop = 目前這條線的店家，qProg[shopId] = 已完成關數，qCard = 正在看的那一關 */
+let questShop = null, qCard = 0; const qProg = {};
 
 const $ = s => document.querySelector(s);
 const panes = document.querySelectorAll('.pane');
@@ -508,6 +677,14 @@ setInterval(tickETA, 5000);
 /* ══ 圖示 ═══════════════════════════════════ */
 const WALK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="4" r="1.8"/><path d="M11 21l1.6-5.4L10 13l.8-4.4 3.4-1.4 2.6 3 2.7 1M10.8 8.6L7.6 10 6 14M12.6 15.6L9 20"/></svg>`;
 const GONDOLA = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6h18M12 6v4M6 10h12l-1.5 5h-9z"/><path d="M9 19h6"/></svg>`;
+const QR = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14h1M14 20h3M20 17v4"/></svg>`;
+/* 每一關的插圖：泡茶 / 茶樹 / 果棚 / 印章 */
+const QART = {
+  pot : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11h11a4 4 0 0 1 0 8H8a3 3 0 0 1-3-3z"/><path d="M16 12.5h2.5a2.5 2.5 0 0 1 0 5H18"/><path d="M8 11V9.5a3 3 0 0 1 6 0V11"/><path d="M9.5 5.5c0-1.2 1-1.5 1-2.5M13 5.5c0-1.2 1-1.5 1-2.5"/></svg>`,
+  leaf: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21V9"/><path d="M12 12C12 7 15 4 20 4c0 5-3 8-8 8z"/><path d="M12 15c0-3.5-2.2-6-6-6 0 3.5 2.2 6 6 6z"/></svg>`,
+  fruit:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18"/><path d="M8 5v3M16 5v4"/><circle cx="8" cy="12" r="4"/><circle cx="16" cy="14" r="3"/><path d="M8 8v0"/></svg>`,
+  seal: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><path d="M9.5 12h5M12 9.5v5"/></svg>`
+};
 function sealSVG(s, cls){
   return `<svg class="${cls||''}" viewBox="0 0 100 100" role="img" aria-label="${L(s).name}">
     <circle cx="50" cy="50" r="45" fill="none" style="stroke:var(--seal)" stroke-width="3.5" opacity=".9"/>
@@ -597,7 +774,8 @@ function fillTrail(){
     h += `</div>
       <button class="stop ${on?'done':''}" data-stop="${s.id}">
         <span class="idx">${on?'✓':s.id}</span>
-        <span><span class="s-name">${L(s).name}</span><span class="s-tag">${L(s).spot} · ${L(s).tag}</span></span>
+        <span><span class="s-name">${L(s).name}</span><span class="s-tag">${L(s).spot} · ${L(s).tag}${
+          s.quest ? `<span class="qbadge">${QR}${x.qBadge}</span>` : '' }</span></span>
         <span class="s-st">${on?x.stopDone:x.stopTodo}</span></button>`;
   });
   $('#pTrail').innerHTML = h + `</div>`;
@@ -605,7 +783,7 @@ function fillTrail(){
 }
 
 function fillStop(id){
-  const x = t(), s = SHOPS.find(v=>v.id===id), on = stamped.has(id), lg = s.leg, d = L(s);
+  const x = t(), s = SHOPS.find(v=>v.id===id), on = stamped.has(id), lg = s.leg, d = L(s), q = questOf(id);
   let travel = `<div class="walkcard">${WALK}<span>${x.walkFrom(d.from, lg.walk)}</span></div>`;
   if (lg.bus){
     const b = BUS[lg.bus.key];
@@ -625,11 +803,23 @@ function fillStop(id){
     ${travel}
     <div class="mission"><span class="label">${x.toDoHere}</span><p>${d.mission}</p></div>
     <p class="sub">${d.why}</p>
+    ${ q ? `<div class="qhero">
+              <div class="qh-top">${QR}<h3>${x.qHeroTitle}</h3></div>
+              <p>${x.qHeroBody}</p>
+              <div class="qprog">
+                <div class="meter"><i style="width:${(qProg[s.id]||0)/q.steps.length*100}%"></i></div>
+                <span class="n">${x.qProgress(qProg[s.id]||0, q.steps.length)}</span>
+              </div>
+            </div>` : '' }
     ${ on
       ? `<div style="display:flex;align-items:center;gap:13px;background:var(--seal-wash);border-radius:7px;padding:13px">
            <div style="width:54px;flex:0 0 54px">${sealSVG(s)}</div>
-           <div><span class="label">${x.doneHere}</span><p class="sub" style="margin-top:2px">${x.doneHereSub}</p></div></div>`
-      : `<button class="btn seal" data-code="${s.id}">${x.ctaCode}</button><p class="tiny">${x.codeHint}</p>` }`;
+           <div><span class="label">${x.doneHere}</span><p class="sub" style="margin-top:2px">${x.doneHereSub}</p></div></div>
+         ${ q ? `<button class="btn ghost" data-quest="${s.id}">${x.qReview}</button>` : '' }`
+      : q
+        ? `<button class="btn seal" data-quest="${s.id}">${(qProg[s.id]||0) ? x.qResume : x.qOpen}</button>
+           <button class="btn ghost" data-code="${s.id}">${x.qQuitToCode}</button>`
+        : `<button class="btn seal" data-code="${s.id}">${x.ctaCode}</button><p class="tiny">${x.codeHint}</p>` }`;
   tickETA();
 }
 
@@ -683,6 +873,118 @@ function fillCode(){
     $('#codeInput').value = c.code; $('#codeErr').textContent = '';
     setTimeout(()=>doStamp(c.id), 300);
   };
+}
+
+/* ══ 店內闖關 ═══════════════════════════════ */
+function fillQuest(){
+  const q = questOf(questShop); if (!q) return;
+  const x = t(), s = SHOPS.find(v=>v.id===q.shop), n = q.steps.length, done = qProg[q.shop] || 0;
+  const all = done >= n;
+  $('#pQuest').innerHTML = `
+    <div class="stack">
+      <span class="label">${x.qEyebrow} · ${L(s).name}</span>
+      <h2 class="h-md">${x.qTitle}</h2>
+      <p class="sub">${x.qOverviewSub}</p>
+    </div>
+    <div class="qprog">
+      <div class="meter"><i style="width:${done/n*100}%"></i></div>
+      <span class="n">${x.qProgress(done, n)}</span>
+    </div>
+    <div>
+      <span class="label">${x.qStepsLabel}</span>
+      <div class="qsteps">
+        ${q.steps.map((st,i)=>{
+          const cls = i < done ? 'done' : i === done ? 'now' : 'locked';
+          const st_ = L(st);
+          return `<div class="qstep ${cls}">
+            <span class="qn">${i < done ? '✓' : i+1}</span>
+            <div>
+              <h4>${ i <= done ? st_.title : '???' }</h4>
+              <p>${ i < done ? st_.where : i === done ? st_.where : x.qLocked }</p>
+              ${ i === done && !all ? `<span class="qnow">${x.qNow}</span>` : '' }
+            </div></div>`;
+        }).join('')}
+      </div>
+    </div>
+    ${ all
+      ? `<button class="btn ghost" data-qcard="${n-1}">${x.qReview}</button>
+         <button class="btn" data-go="trail">${x.doneBack}</button>`
+      : `<button class="btn seal" data-qscan="${done}">${done ? x.qResume : x.qOpen}</button>
+         <p class="tiny">${x.qDemoNote}</p>` }`;
+}
+
+function fillQScan(i){
+  const q = questOf(questShop); if (!q) return;
+  const x = t(), st = q.steps[i], d = L(st);
+  $('#pQScan').innerHTML = `
+    <div class="stack">
+      <span class="label">${x.qStepNo(i+1)} · ${x.qProgress(qProg[q.shop]||0, q.steps.length)}</span>
+      <h2 class="h-md">${x.qWhere}</h2>
+    </div>
+    <div class="qscan">
+      <div class="frame">${QR}</div>
+      <p class="where">${d.where}</p>
+    </div>
+    <button class="btn seal" id="qScanBtn">${x.qScanBtn}</button>
+    <p class="orline">${x.codeOr}</p>
+    <div class="stack">
+      <p class="tiny">${x.qManual}</p>
+      <input class="codein" id="qCodeInput" inputmode="numeric" maxlength="4" placeholder="0000" aria-label="${x.qManual}">
+      <p class="err" id="qCodeErr"></p>
+      <button class="btn ghost" id="qCodeBtn">${x.qCodeBtn}</button>
+    </div>`;
+  $('#qScanBtn').onclick = () => { $('#qCodeInput').value = st.code; setTimeout(()=>qUnlock(i, st.code), 300); };
+  $('#qCodeBtn').onclick = () => qUnlock(i, $('#qCodeInput').value.trim());
+  $('#qCodeInput').addEventListener('keydown', e => { if (e.key === 'Enter') qUnlock(i, $('#qCodeInput').value.trim()); });
+}
+
+function qUnlock(i, val){
+  const q = questOf(questShop), x = t(), st = q.steps[i], err = $('#qCodeErr');
+  if (val.length !== 4){ err.textContent = x.qErrLen; return; }
+  if (val !== st.code){
+    const later = q.steps.findIndex(v => v.code === val);
+    err.textContent = later > i ? x.qErrOrder(later+1) : x.qErrWrong;
+    return;
+  }
+  qProg[q.shop] = Math.max(qProg[q.shop]||0, i+1);
+  qCard = i; fillQCard(i); fillQuest();
+  history = ['quest'];
+  show('qcard', false);
+}
+
+function fillQCard(i){
+  const q = questOf(questShop); if (!q) return;
+  const x = t(), st = q.steps[i], d = L(st), last = i === q.steps.length - 1;
+  const shopDone = stamped.has(q.shop);
+  $('#pQCard').innerHTML = `
+    <div class="qcard">
+      <div class="qc-art">${QART[st.art] || QART.leaf}</div>
+      <div class="qc-body">
+        <span class="label">${x.qStepNo(i+1)}</span>
+        <h3>${d.title}</h3>
+        <p>${d.body}</p>
+      </div>
+    </div>
+    <div class="qtask"><span class="label">${x.qTask}</span><p>${d.task}</p></div>
+    ${ last
+      ? `<div class="qword">
+           <span class="label">${x.qWordLabel}</span>
+           <span class="w">${LANG === 'ja' ? st.wordJa : st.word}</span>
+         </div>
+         <p class="sub">${x.qFinSub}</p>
+         ${ shopDone
+            ? `<button class="btn" data-go="trail">${x.doneBack}</button>`
+            : `<button class="btn seal" data-qfinish="${q.shop}">${x.qFinishBtn}</button>` }`
+      : `<div class="qscan" style="padding:15px 14px">
+           <div class="frame" style="width:60px;height:60px">${QR}</div>
+           <span class="label">${x.qNext}</span>
+           <p class="where">${d.next}</p>
+         </div>
+         <button class="btn seal" data-qscan="${i+1}">${x.qNextBtn}</button>` }
+    <div class="qprog">
+      <div class="meter"><i style="width:${(qProg[q.shop]||0)/q.steps.length*100}%"></i></div>
+      <span class="n">${x.qProgress(qProg[q.shop]||0, q.steps.length)}</span>
+    </div>`;
 }
 
 function fillDone(){
@@ -763,19 +1065,21 @@ function fillTabs(){
 }
 
 /* ══ 導覽 ═══════════════════════════════════ */
-const TAB_OF = {trail:'trail', stop:'trail', busview:'trail', code:'trail', done:'trail', passport:'passport', reward:'reward'};
+const TAB_OF = {trail:'trail', stop:'trail', busview:'trail', code:'trail', done:'trail',
+                quest:'trail', qscan:'trail', qcard:'trail', passport:'passport', reward:'reward'};
 function chrome(){
   const x = t(), name = cur();
   const showChrome = name !== 'welcome';
   $('#top').classList.toggle('hide', !showChrome);
   $('#tabs').classList.toggle('hide', !showChrome || name === 'routes');
-  $('#back').hidden = !['stop','busview','code','routes'].includes(name);
+  $('#back').hidden = !['stop','busview','code','routes','quest','qscan','qcard'].includes(name);
   $('#back').setAttribute('aria-label', x.back);
   $('#topChip').textContent = `${stamped.size} / ${TOTAL}`;
   $('#langTop').innerHTML = langSw(true);
   $('#deskNote').textContent = x.deskNote;
   $('#topName').textContent =
     (name === 'stop' || name === 'code') && activeShop ? L(SHOPS.find(s=>s.id===activeShop)).name :
+    ['quest','qscan','qcard'].includes(name) && questShop ? `${L(SHOPS.find(s=>s.id===questShop)).name} · ${x.qTitle}` :
     name === 'busview' ? x.busTop : x.appName;
   const tb = TAB_OF[name];
   document.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === tb)));
@@ -799,6 +1103,7 @@ function renderAll(){
   fillWelcome(); fillRoutes(); fillTrail(); fillPassport(); fillReward(); fillTabs(); fillCode();
   if (activeShop) fillStop(activeShop);
   if (busShop) fillBus(busShop);
+  if (questShop){ fillQuest(); fillQScan(Math.min(qProg[questShop]||0, questOf(questShop).steps.length-1)); fillQCard(qCard); }
   if (lastStamp) fillDone();
   chrome();
 }
@@ -807,6 +1112,7 @@ function renderAll(){
 function doStamp(id){
   stamped.add(id); lastStamp = id;
   fillTrail(); fillPassport(); fillReward(); fillDone();
+  if (questShop){ fillQuest(); fillQCard(qCard); }
   history = ['trail'];
   show('done', false);
 }
@@ -816,6 +1122,11 @@ function submitCode(){
   if (val === c.code){ doStamp(c.id); return; }
   const other = SHOPS.find(v=>v.code === val);
   $('#codeErr').textContent = other ? x.errOther(L(other).name, L(c).name) : x.errWrong;
+}
+function openQuest(id){ questShop = id; qCard = Math.max(0, (qProg[id]||1) - 1); fillQuest(); show('quest'); }
+function openQScan(i){
+  fillQScan(i); show('qscan');
+  setTimeout(()=>$('#qCodeInput')?.focus({preventScroll:true}), 80);
 }
 function openCode(id){
   activeShop = id; fillCode();
@@ -847,6 +1158,18 @@ document.addEventListener('click', e => {
 
   const cd = e.target.closest('[data-code]');
   if (cd){ openCode(+cd.dataset.code); return; }
+
+  const qq = e.target.closest('[data-quest]');
+  if (qq){ openQuest(+qq.dataset.quest); return; }
+
+  const qs = e.target.closest('[data-qscan]');
+  if (qs){ openQScan(+qs.dataset.qscan); return; }
+
+  const qc = e.target.closest('[data-qcard]');
+  if (qc){ qCard = +qc.dataset.qcard; fillQCard(qCard); show('qcard'); return; }
+
+  const qf = e.target.closest('[data-qfinish]');
+  if (qf){ const id = +qf.dataset.qfinish; activeShop = id; doStamp(id); return; }
 
   const tab = e.target.closest('.tab');
   if (tab){ history = []; show(tab.dataset.tab, false); return; }
